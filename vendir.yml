@@ -1,0 +1,15 @@
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+directories:
+  - path: helm/zot
+    contents:
+      - path: .
+        git:
+          url: https://github.com/project-zot/helm-charts
+          ref: zot-0.1.38
+        includePaths:
+          - charts/zot/**
+        excludePaths:
+          - charts/zot/unittests/**
+          - charts/zot/templates/NOTES.txt
+          - charts/zot/templates/tests/**
