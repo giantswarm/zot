@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
     - name: wget
-      image: alpine:3.18
+      image: "{{ .Values.giantswarm.registry }}/{{ .Values.giantswarm.images.alpine.image }}:{{ .Values.giantswarm.images.alpine.tag }}"
       command:
       - sh
       - -c
