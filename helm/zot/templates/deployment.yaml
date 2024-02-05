@@ -79,7 +79,7 @@ spec:
                   value: Basic {{ .Values.authHeader }}
               {{- end }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{ include "resource.zot.resources" . | nindent 12 }}
       {{- if or .Values.mountConfig .Values.mountSecret .Values.persistence .Values.externalSecrets }}
       volumes:
       {{- if .Values.mountConfig }}
