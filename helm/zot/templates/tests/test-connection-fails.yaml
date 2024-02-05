@@ -8,6 +8,8 @@ metadata:
     "helm.sh/hook": test
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded,hook-failed
 spec:
+  securityContext:
+    {{- toYaml .Values.podSecurityContext | nindent 4 }}
   containers:
     - name: wget
       image: "{{ .Values.giantswarm.registry }}/{{ .Values.giantswarm.images.alpine.image }}:{{ .Values.giantswarm.images.alpine.tag }}"
