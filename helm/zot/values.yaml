@@ -1,6 +1,13 @@
 # Giant Swarm specific values and defaults
 giantswarm:
-  # Allows VPA to be used if it's installed in the cluster
+  images:
+    registry: gsoci.azurecr.io
+    zot:
+      image: giantswarm/zot
+      tag: "" # defaults to appVersion in chart.yaml
+    alpine:
+      image: giantswarm/alpine
+      tag: "3.18"
   verticalPodAutoscaler:
     enabled: true
     # Enables bypassing "autoscaling.k8s.io/v1" check; use with care
@@ -25,7 +32,6 @@ podSecurityContext:
   seccompProfile:
     type: RuntimeDefault
 
-
 # Default values for zot.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -46,7 +52,7 @@ serviceAccount:
 service:
   type: NodePort
   port: 5000
-  nodePort: null  # Set to a specific port if type is NodePort
+  nodePort: null # Set to a specific port if type is NodePort
   # Annotations to add to the service
   annotations: {}
   # Set to a static IP if a static IP is desired, only works when
