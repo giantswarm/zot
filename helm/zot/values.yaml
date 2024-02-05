@@ -34,7 +34,7 @@ image:
   repository: ghcr.io/project-zot/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.0.0-rc7"
+  tag: "v2.0.1-rc1"
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -77,6 +77,15 @@ ingress:
 # in configuration, to prevent failures, the scheme must be set to 'HTTPS'.
 httpGet:
   scheme: HTTP
+# By default, Kubernetes considers a Pod healthy if the liveness probe returns
+# successfully. However, sometimes applications need additional startup time on
+# their first initialization. By defining a startupProbe, we can allow the
+# application to take extra time for initialization without compromising fast
+# response to deadlocks.
+startupProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  failureThreshold: 3
 # If mountConfig is true the configMap named $CHART_RELEASE-config is mounted
 # on the pod's '/etc/zot' directory
 mountConfig: false
@@ -180,3 +189,13 @@ env:
 #    secretKeyRef:
 #      name: mysecret
 #      key: username
+
+# Extra Volume Mounts
+extraVolumeMounts: []
+# - name: data
+#   mountPath: /var/lib/registry
+
+# Extra Volumes
+extraVolumes: []
+# - name: data
+#   emptyDir: {}
