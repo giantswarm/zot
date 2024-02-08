@@ -1,0 +1,1 @@
+upstream sync: URL="https://github.com/project-zot/helm-charts.git" REF="zot-0.1.40"
