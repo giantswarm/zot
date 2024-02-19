@@ -78,3 +78,13 @@ limits:
 {{ toYaml .Values.resources.limits | indent 2 -}}
 {{- end -}}
 {{- end -}}
+
+{{- define "resource.test.resources" -}}
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 100m
+    memory: 64Mi
+{{- end }}

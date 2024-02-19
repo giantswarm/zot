@@ -30,8 +30,10 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- if .Values.securityContext }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.giantswarm.registry }}/{{ .Values.giantswarm.images.zot.image }}:{{ .Values.giantswarm.images.zot.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
@@ -98,7 +100,7 @@ spec:
                   value: Basic {{ .Values.authHeader }}
               {{- end }}
           resources:
-            {{ include "resource.zot.resources" . | nindent 12 }}
+            {{- include "resource.zot.resources" . | nindent 12 }}
       {{- if or .Values.mountConfig .Values.mountSecret .Values.persistence .Values.externalSecrets (not (empty .Values.extraVolumes))}}
       volumes:
       {{- if .Values.mountConfig }}

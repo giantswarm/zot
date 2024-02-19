@@ -13,6 +13,7 @@ spec:
   containers:
     - name: wget
       image: "{{ .Values.giantswarm.registry }}/{{ .Values.giantswarm.images.alpine.image }}:{{ .Values.giantswarm.images.alpine.tag }}"
+      {{- include "resource.test.resources" . | nindent 6 }}
       command:
       - sh
       - -c
