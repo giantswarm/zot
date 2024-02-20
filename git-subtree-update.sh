@@ -40,16 +40,17 @@ git checkout subtree-split-tag
 git branch -D $SPLIT_BRANCH_NAME || true
 git subtree split --prefix=$REMOTE_DIR -b $SPLIT_BRANCH_NAME --annotate="$ANNOTATE"
 
+# return to our branch
+git checkout "$current_branch"
+
 # check if there's anything to merge
 last_split_commit=$(git log -n 1 --pretty=format:"%h" $SPLIT_BRANCH_NAME)
 if git log --pretty=format:"%h" | grep "$last_split_commit"; then
 	echo "The last commit from subtree seems to be already merged in the tree. Exiting."
-	git checkout "$current_branch"
 	exit 0
 fi
 
 # decide merge vs add
-git checkout "$current_branch"
 if git log -q | grep "Add '$DOWN_DIR' from commit" >/dev/null; then
 	op="merge"
 else
