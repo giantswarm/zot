@@ -206,6 +206,12 @@ extraVolumes: []
 # - name: data
 #   emptyDir: {}
 
+# Deployment strategy type
+strategy:
+  type: RollingUpdate
+#  rollingUpdate:
+#    maxUnavailable: 25%
+
 podAnnotations: {}
 
 global:
