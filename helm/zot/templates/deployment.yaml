@@ -34,7 +34,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           {{- end }}
-          image: "{{ .Values.giantswarm.registry }}/{{ .Values.giantswarm.images.zot.image }}:{{ .Values.giantswarm.images.zot.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.giantswarm.images.registry }}/{{ .Values.giantswarm.images.zot.image }}:{{ .Values.giantswarm.images.zot.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             {{- toYaml .Values.env | nindent 12 }}

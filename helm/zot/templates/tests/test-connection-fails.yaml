@@ -12,7 +12,7 @@ spec:
     {{- toYaml .Values.podSecurityContext | nindent 4 }}
   containers:
     - name: wget
-      image: "{{ .Values.giantswarm.registry }}/{{ .Values.giantswarm.images.alpine.image }}:{{ .Values.giantswarm.images.alpine.tag }}"
+      image: "{{ .Values.giantswarm.images.registry }}/{{ .Values.giantswarm.images.alpine.image }}:{{ .Values.giantswarm.images.alpine.tag }}"
       resources:
         {{- include "resource.zot.resources" . | nindent 8 }}
       command:
