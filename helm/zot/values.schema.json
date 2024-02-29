@@ -192,7 +192,7 @@
                     "type": "string"
                 },
                 "storageClassName": {
-                    "type": "null"
+                    "type": "string"
                 }
             }
         },
