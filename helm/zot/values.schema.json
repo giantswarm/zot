@@ -160,6 +160,15 @@
         "podSecurityContext": {
             "type": "object",
             "properties": {
+                "fsGroup": {
+                    "type": "integer"
+                },
+                "fsGroupChangePolicy": {
+                    "type": "string"
+                },
+                "runAsGroup": {
+                    "type": "integer"
+                },
                 "runAsNonRoot": {
                     "type": "boolean"
                 },
@@ -253,6 +262,9 @@
                 },
                 "readOnlyRootFilesystem": {
                     "type": "boolean"
+                },
+                "runAsGroup": {
+                    "type": "integer"
                 },
                 "runAsNonRoot": {
                     "type": "boolean"
