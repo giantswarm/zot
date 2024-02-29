@@ -4,7 +4,8 @@ giantswarm:
     registry: gsoci.azurecr.io
     zot:
       image: giantswarm/zot
-      tag: ""  # defaults to appVersion in chart.yaml
+      # defaults to appVersion in chart.yaml
+      tag: ""
     alpine:
       image: giantswarm/alpine
       tag: "3.18"
@@ -222,6 +223,36 @@ extraVolumes: []
 
 podAnnotations: {}
 
+serviceMonitor:
+  # -- Specifies whether to create a ServiceMonitor resource for collecting Prometheus metrics
+  enabled: false
+  # -- namespace where you want to install ServiceMonitors
+  namespace: ""
+  # -- Additional labels
+  additionalLabels: {}
+  # --  Interval to scrape metrics
+  interval: 30s
+  # -- Timeout if metrics can't be retrieved in given time interval
+  scrapeTimeout: 25s
+  # -- Let prometheus add an exported_ prefix to conflicting labels
+  honorLabels: false
+  # -- Metric relabel configs to apply to samples before ingestion. [Metric Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs)
+  metricRelabelings: []
+  # - action: replace
+  #   regex: (.*)
+  #   replacement: $1
+  #   sourceLabels:
+  #   - exported_namespace
+  #   targetLabel: namespace
+  # -- Relabel configs to apply to samples before ingestion. [Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
+  relabelings: []
+  # - sourceLabels: [__meta_kubernetes_pod_node_name]
+  #   separator: ;
+  #   regex: ^(.*)$
+  #   targetLabel: nodename
+  #   replacement: $1
+  #   action: replace
+  #
 global:
   podSecurityStandards:
     enforced: false
