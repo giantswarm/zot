@@ -1,0 +1,19 @@
+{{- if .Capabilities.APIVersions.Has "cilium.io/v2/CiliumNetworkPolicy" }}
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "external-secrets.name" . }}-access-apiserver
+  labels:
+    {{- include "external-secrets.labels" . | nindent 4 }}
+spec:
+  egress:
+  - toEntities:
+    - cluster
+    - world
+  ingress:
+  - fromEntities:
+    - cluster
+  endpointSelector:
+    matchLabels:
+{{ include "common.selectorLabels" . | indent 6 }}
+{{- end }}
