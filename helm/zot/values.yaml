@@ -109,7 +109,7 @@ startupProbe:
   failureThreshold: 3
 # If mountConfig is true the configMap named $CHART_RELEASE-config is mounted
 # on the pod's '/etc/zot' directory
-mountConfig: false
+mountConfig: true
 # If mountConfig is true the chart creates the '$CHART_RELEASE-config', if it
 # does not exist the user is in charge of managing it (as this file includes a
 # sample file you have to add it empty to handle it externally) ... note that
