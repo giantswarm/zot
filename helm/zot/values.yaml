@@ -15,10 +15,10 @@ giantswarm:
     force: false
 
 resources:
-  limits:
+  requests:
     cpu: 500m
     memory: 512Mi
-  requests:
+  limits:
     cpu: 1000m
     memory: 1024Mi
 

@@ -15,11 +15,11 @@ spec:
           - cpu
           - memory
         minAllowed:
-          cpu: {{ .Values.resources.limits.cpu }}
-          memory: {{ .Values.resources.limits.memory }}
-        maxAllowed:
           cpu: {{ .Values.resources.requests.cpu }}
           memory: {{ .Values.resources.requests.memory }}
+        maxAllowed:
+          cpu: {{ .Values.resources.limits.cpu }}
+          memory: {{ .Values.resources.limits.memory }}
         mode: Auto
   targetRef:
     apiVersion: apps/v1
