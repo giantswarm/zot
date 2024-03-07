@@ -1,0 +1,31 @@
+{{/*- if le (atoi (.Capabilities.KubeVersion.Minor | replace "+" "")) 24 */}}
+# PSP were removed in k8s 1.25
+# but we still require them in older versions
+{{- if not .Values.global.podSecurityStandards.enforced }}
+---
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: {{ include "zot.fullname" . }}
+  labels:
+    {{- include "zot.labels" . | nindent 4 }}
+spec:
+  allowPrivilegeEscalation: false
+  fsGroup:
+    ranges:
+      - max: 65535
+        min: 1
+    rule: MustRunAs
+  privileged: false
+  runAsUser:
+    rule: MustRunAsNonRoot
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    ranges:
+      - max: 65535
+        min: 1
+    rule: MustRunAs
+  volumes:
+    - "*"
+{{- end }}

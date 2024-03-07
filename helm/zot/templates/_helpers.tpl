@@ -72,9 +72,18 @@ Create the name of the service account to use
 
 {{- define "resource.zot.resources" -}}
 requests:
-{{ toYaml .Values.resources | indent 2 -}}
+{{ toYaml .Values.resources.requests | indent 2 -}}
 {{ if eq (include "resource.vpa.enabled" .) "false" }}
 limits:
 {{ toYaml .Values.resources.limits | indent 2 -}}
 {{- end -}}
 {{- end -}}
+
+{{- define "resource.test.resources" -}}
+requests:
+{{ toYaml .Values.testPodResources.requests | indent 2 -}}
+{{ if eq (include "resource.vpa.enabled" .) "false" }}
+limits:
+{{ toYaml .Values.testPodResources.limits | indent 2 -}}
+{{- end -}}
+{{- end }}

@@ -1,6 +1,14 @@
 # Giant Swarm specific values and defaults
 giantswarm:
-  # Allows VPA to be used if it's installed in the cluster
+  images:
+    registry: gsoci.azurecr.io
+    zot:
+      image: giantswarm/zot-linux-amd64
+      # defaults to appVersion in chart.yaml
+      tag: ""
+    alpine:
+      image: giantswarm/alpine
+      tag: "3.18"
   verticalPodAutoscaler:
     enabled: true
     # Enables bypassing "autoscaling.k8s.io/v1" check; use with care
@@ -14,7 +22,24 @@ resources:
     cpu: 1000m
     memory: 1024Mi
 
+testPodResources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 100m
+    memory: 64Mi
+
 podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+  fsGroupChangePolicy: "OnRootMismatch"
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
   allowPrivilegeEscalation: false
   capabilities:
     drop:
@@ -22,9 +47,9 @@ podSecurityContext:
   readOnlyRootFilesystem: true
   runAsNonRoot: true
   runAsUser: 1000
+  runAsGroup: 1000
   seccompProfile:
     type: RuntimeDefault
-
 
 # Default values for zot.
 # This is a YAML-formatted file.
@@ -34,7 +59,7 @@ image:
   repository: ghcr.io/project-zot/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.0.0-rc7"
+  tag: "v2.0.2-rc1"
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -46,7 +71,7 @@ serviceAccount:
 service:
   type: NodePort
   port: 5000
-  nodePort: null  # Set to a specific port if type is NodePort
+  nodePort: null
   # Annotations to add to the service
   annotations: {}
   # Set to a static IP if a static IP is desired, only works when
@@ -77,9 +102,18 @@ ingress:
 # in configuration, to prevent failures, the scheme must be set to 'HTTPS'.
 httpGet:
   scheme: HTTP
+# By default, Kubernetes considers a Pod healthy if the liveness probe returns
+# successfully. However, sometimes applications need additional startup time on
+# their first initialization. By defining a startupProbe, we can allow the
+# application to take extra time for initialization without compromising fast
+# response to deadlocks.
+startupProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  failureThreshold: 3
 # If mountConfig is true the configMap named $CHART_RELEASE-config is mounted
 # on the pod's '/etc/zot' directory
-mountConfig: false
+mountConfig: true
 # If mountConfig is true the chart creates the '$CHART_RELEASE-config', if it
 # does not exist the user is in charge of managing it (as this file includes a
 # sample file you have to add it empty to handle it externally) ... note that
@@ -170,7 +204,7 @@ pvc:
   # Size of the volume requested
   storage: 8Gi
   # Name of the storage class to use if it is different than the default one
-  storageClassName: null
+  storageClassName: ""
 # List of environment variables to set on the container
 env:
 # - name: "TEST"
@@ -180,3 +214,49 @@ env:
 #    secretKeyRef:
 #      name: mysecret
 #      key: username
+
+# Extra Volume Mounts
+extraVolumeMounts: []
+# - name: data
+#   mountPath: /var/lib/registry
+
+# Extra Volumes
+extraVolumes: []
+# - name: data
+#   emptyDir: {}
+
+podAnnotations: {}
+
+serviceMonitor:
+  # -- Specifies whether to create a ServiceMonitor resource for collecting Prometheus metrics
+  enabled: false
+  # -- namespace where you want to install ServiceMonitors
+  namespace: ""
+  # -- Additional labels
+  additionalLabels: {}
+  # --  Interval to scrape metrics
+  interval: 30s
+  # -- Timeout if metrics can't be retrieved in given time interval
+  scrapeTimeout: 25s
+  # -- Let prometheus add an exported_ prefix to conflicting labels
+  honorLabels: false
+  # -- Metric relabel configs to apply to samples before ingestion. [Metric Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs)
+  metricRelabelings: []
+  # - action: replace
+  #   regex: (.*)
+  #   replacement: $1
+  #   sourceLabels:
+  #   - exported_namespace
+  #   targetLabel: namespace
+  # -- Relabel configs to apply to samples before ingestion. [Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
+  relabelings: []
+  # - sourceLabels: [__meta_kubernetes_pod_node_name]
+  #   separator: ;
+  #   regex: ^(.*)$
+  #   targetLabel: nodename
+  #   replacement: $1
+  #   action: replace
+  #
+global:
+  podSecurityStandards:
+    enforced: false

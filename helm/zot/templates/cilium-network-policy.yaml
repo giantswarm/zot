@@ -1,0 +1,20 @@
+{{- if .Capabilities.APIVersions.Has "cilium.io/v2/CiliumNetworkPolicy" }}
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "zot.fullname" . }}
+  labels:
+    {{- include "zot.labels" . | nindent 4 }}
+spec:
+  egress:
+  - toEntities:
+    - cluster
+    - world
+  ingress:
+  - fromEntities:
+    - cluster
+  endpointSelector:
+    matchLabels:
+{{ include "zot.selectorLabels" . | indent 6 }}
+{{- end }}
