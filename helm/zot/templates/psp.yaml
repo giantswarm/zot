@@ -1,7 +1,7 @@
 {{/*- if le (atoi (.Capabilities.KubeVersion.Minor | replace "+" "")) 24 */}}
 # PSP were removed in k8s 1.25
 # but we still require them in older versions
-{{- if not .Values.global.podSecurityStandards.enforced }}
+{{- if not (((.Values.global).podSecurityStandards).enforced) }}
 ---
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
