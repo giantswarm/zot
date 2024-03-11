@@ -7,4 +7,4 @@ jobs:
     name: Run the upgrade script
     runs-on: ubuntu-latest
     steps:
-      - run: ./ci-update-to-latest.sh
+      - run: .github/workflows/ci-update-to-latest.sh
