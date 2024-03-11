@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 source subtree-cfg.sh
 
@@ -18,7 +18,7 @@ if [[ $remote_status -eq 0 ]]; then
 	echo "Detected correct remote upstream URL: $remote_url"
 fi
 
-if ! $remote_ok; then
+if [[ "$remote_ok" = false ]]; then
 	echo "Adding remote upstream"
 	git remote add upstream $REMOTE_URL
 fi
