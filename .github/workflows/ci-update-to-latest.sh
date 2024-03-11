@@ -46,9 +46,9 @@ if git status --short | grep "^UU "; then
 	git commit -m "Merge '$DOWN_DIR' from tag '$latest_upstream_tag'"
 fi
 
-echo "Creating PR on GitHub"
-gh pr create --title "Automated update to tag $latest_upstream_tag" \
-	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
-	--base main \
-	--head upstream-sync
+#echo "Creating PR on GitHub"
+#gh pr create --title "Automated update to tag $latest_upstream_tag" \
+#	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
+#	--base main \
+#	--head upstream-sync
 echo "Done"
