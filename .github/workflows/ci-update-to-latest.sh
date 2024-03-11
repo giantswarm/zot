@@ -31,8 +31,9 @@ echo "Latest upstream tag: $latest_upstream_tag"
 
 # run the script with the latest tag
 echo "Running git-subtree-update.sh with the latest tag"
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 set +e
-./git-subtree-update.sh "$latest_upstream_tag"
+"$SCRIPT_DIR"/git-subtree-update.sh "$latest_upstream_tag"
 set -e
 if git diff-index --quiet HEAD --; then
 	echo "No changes detected, exiting."
