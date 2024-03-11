@@ -6,5 +6,24 @@ jobs:
   run_upgrade:
     name: Run the upgrade script
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.TAYLORBOT_GITHUB_ACTION }}
+      GH_DEBUG: 1
     steps:
-      - run: ./ci-update-to-latest.sh
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git config --global user.email "action@github.com" && git config --global user.name "GitHub Action"
+      - run: .github/workflows/ci-update-to-latest.sh
+      #      - name: create PR
+      #        uses: devops-infra/action-pull-request@v0.5.5
+      #        with:
+      #          github_token: ${{ secrets.GITHUB_TOKEN }}
+      #          target_branch: main
+      #          title: Update
+      #          body: "**Automated pull request**"
+      #      - name: Create Pull Request
+      #        uses: peter-evans/create-pull-request@v6
+      #        with:
+      #          commit-message: "This PR updates the chart using git subtree to the latest tag in the upstream repository."
+      #          base: main

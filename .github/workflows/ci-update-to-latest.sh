@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -x
 
 source subtree-cfg.sh
 
@@ -18,7 +18,8 @@ if [[ $remote_status -eq 0 ]]; then
 	echo "Detected correct remote upstream URL: $remote_url"
 fi
 
-if ! $remote_ok; then
+set -e
+if [[ "$remote_ok" = false ]]; then
 	echo "Adding remote upstream"
 	git remote add upstream $REMOTE_URL
 fi
@@ -30,8 +31,9 @@ echo "Latest upstream tag: $latest_upstream_tag"
 
 # run the script with the latest tag
 echo "Running git-subtree-update.sh with the latest tag"
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 set +e
-./git-subtree-update.sh "$latest_upstream_tag"
+"$SCRIPT_DIR"/git-subtree-update.sh "$latest_upstream_tag" merge
 set -e
 if git diff-index --quiet HEAD --; then
 	echo "No changes detected, exiting."
@@ -45,6 +47,10 @@ if git status --short | grep "^UU "; then
 fi
 
 echo "Creating PR on GitHub"
+set +e
+git push origin --delete upstream-sync
+set -e
+git push --set-upstream origin upstream-sync
 gh pr create --title "Automated update to tag $latest_upstream_tag" \
 	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
 	--base main \

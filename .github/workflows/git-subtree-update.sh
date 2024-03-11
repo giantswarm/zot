@@ -1,14 +1,15 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 source subtree-cfg.sh
 
 function help() {
-	echo "Usage: $0 [REMOTE_TAG]"
+	echo "Usage: $0 REMOTE_TAG [FORCE_OPT]"
 	echo "  Update the subtree from a tag in the upstream repository."
 	echo "  Requires a config file named 'subtree-cfg.sh' with the following variables:"
 	echo "    REMOTE_URL: the URL of the upstream repository"
 	echo "    REMOTE_DIR: the directory in the upstream repository to extract"
 	echo "    DOWN_DIR: the directory in the current repository to put the subtree in"
+	echo "  FORCE_OPT: set to 'merge' or 'add' to force subtree operation"
 }
 
 if [[ $# -lt 1 ]]; then
@@ -16,6 +17,7 @@ if [[ $# -lt 1 ]]; then
 	exit 1
 fi
 
+REMOTE_REF=$1
 UPSTREAM_NAME=upstream
 ANNOTATE="(upstream-split) "
 SPLIT_BRANCH_NAME=upstream-split
@@ -51,14 +53,18 @@ if git log --pretty=format:"%h" | grep "$last_split_commit"; then
 fi
 
 # decide merge vs add
-if git log -q | grep "Add '$DOWN_DIR' from commit" >/dev/null; then
-	op="merge"
+if [[ -z "$2" ]]; then
+	if git log -q | grep "Add '$DOWN_DIR' from commit" >/dev/null; then
+		op="merge"
+	else
+		op="add"
+	fi
 else
-	op="add"
+	op="$2"
 fi
 
 # merge it
-git subtree $op --prefix=$DOWN_DIR $SPLIT_BRANCH_NAME
+git subtree "$op" --prefix=$DOWN_DIR $SPLIT_BRANCH_NAME
 git notes add -m "upstream sync: URL=\"$REMOTE_URL\" REF=\"$REMOTE_REF\""
 
 echo "done"
