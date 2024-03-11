@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 source subtree-cfg.sh
 
@@ -30,15 +30,23 @@ echo "Latest upstream tag: $latest_upstream_tag"
 
 # run the script with the latest tag
 echo "Running git-subtree-update.sh with the latest tag"
+set +e
 ./git-subtree-update.sh "$latest_upstream_tag"
+set -e
 if git diff-index --quiet HEAD --; then
 	echo "No changes detected, exiting."
 	exit 0
 fi
 
-# echo "Creating PR on GitHub"
-# gh pr create --title "Automated update to tag $latest_upstream_tag" \
-# 	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
-# 	--base main \
-# 	--head upstream-sync
-# echo "Done"
+if git status --short | grep "^UU "; then
+	echo "Conflicts detected, forcing merge commit."
+	git add -A
+	git commit -m "Merge '$DOWN_DIR' from tag '$latest_upstream_tag'"
+fi
+
+echo "Creating PR on GitHub"
+gh pr create --title "Automated update to tag $latest_upstream_tag" \
+	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
+	--base main \
+	--head upstream-sync
+echo "Done"
