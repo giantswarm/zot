@@ -33,7 +33,7 @@ echo "Latest upstream tag: $latest_upstream_tag"
 echo "Running git-subtree-update.sh with the latest tag"
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 set +e
-"$SCRIPT_DIR"/git-subtree-update.sh "$latest_upstream_tag"
+"$SCRIPT_DIR"/git-subtree-update.sh "$latest_upstream_tag" merge
 set -e
 if git diff-index --quiet HEAD --; then
 	echo "No changes detected, exiting."
