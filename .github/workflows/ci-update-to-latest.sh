@@ -47,6 +47,7 @@ if git status --short | grep "^UU "; then
 fi
 
 echo "Creating PR on GitHub"
+git push --set-upstream origin upstream-sync
 gh pr create --title "Automated update to tag $latest_upstream_tag" \
 	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
 	--base main \
