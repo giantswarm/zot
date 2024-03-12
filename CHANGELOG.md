@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- fixed:
+  - chart is now pushed to the correct catalog
+
 ## [0.1.0] - 2024-03-12
 
 - initial release compatible with vintage and CAPI
