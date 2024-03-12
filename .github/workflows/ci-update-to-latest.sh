@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 source subtree-cfg.sh
 
@@ -51,10 +51,11 @@ set +e
 git push origin --delete upstream-sync
 set -e
 git push --set-upstream origin upstream-sync
-
+repo=$(gh repo view --json nameWithOwner -q ".nameWithOwner")
+echo "Detected repository: $repo"
 gh pr create --title "Automated update to tag $latest_upstream_tag" \
 	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
 	--base main \
 	--head upstream-sync \
-	-R giantswarm/zot
+	-R "$repo"
 echo "Done"
