@@ -2,7 +2,7 @@ name: Auto upgrade the chart from upstream
 
 on:
   schedule:
-    - cron: "15 13 * * 1,2,3,4,5"
+    - cron: "57 12 * * 1,2,3,4,5"
   workflow_dispatch: {}
 
 jobs:
