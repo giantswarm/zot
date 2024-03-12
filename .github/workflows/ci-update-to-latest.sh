@@ -52,9 +52,9 @@ git push origin --delete upstream-sync
 set -e
 git push --set-upstream origin upstream-sync
 
-gh --version
 gh pr create --title "Automated update to tag $latest_upstream_tag" \
 	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
 	--base main \
-	--head upstream-sync -R giantswarm/zot
+	--head upstream-sync \
+	-R giantswarm/zot
 echo "Done"
