@@ -2,6 +2,16 @@
 
 source subtree-cfg.sh
 
+function help() {
+	echo "Usage: $0 [REPO_NAME]"
+}
+
+if [[ $# -lt 1 ]]; then
+	help
+	exit 1
+fi
+repo_name=$1
+
 # check if remote tag newer then the most recent local tag is available
 
 remote_log=$(git remote show upstream)
@@ -58,5 +68,5 @@ gh pr create --title "Automated update to tag $latest_upstream_tag" \
 	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
 	--base main \
 	--head upstream-sync \
-	-R "$repo"
+	-R "$repo_name"
 echo "Done"

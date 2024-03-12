@@ -11,11 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ github.token }}
-      GITHUB_CONTEXT: ${{ toJson(github) }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: echo $GITHUB_CONTEXT
       - run: git config --global user.email "action@github.com" && git config --global user.name "GitHub Action"
-      - run: .github/workflows/ci-update-to-latest.sh
+      - run: .github/workflows/ci-update-to-latest.sh ${{ github.repository }}
