@@ -53,6 +53,7 @@ set -e
 git push --set-upstream origin upstream-sync
 repo=$(gh repo view --json nameWithOwner -q ".nameWithOwner")
 echo "Detected repository: $repo"
+gh repo view --json url
 gh pr create --title "Automated update to tag $latest_upstream_tag" \
 	--body "This PR updates the chart using git subtree to the latest tag in the upstream repository." \
 	--base main \
