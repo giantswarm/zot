@@ -8,3 +8,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - initial release compatible with vintage and CAPI
+
+[Unreleased]: https://github.com/giantswarm/zot/tree/main
