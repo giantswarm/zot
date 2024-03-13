@@ -1,0 +1,19 @@
+name: Auto upgrade the chart from upstream
+
+on:
+  schedule:
+    - cron: "07 13 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  run_upgrade:
+    name: Run the upgrade script
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git config --global user.email "action@github.com" && git config --global user.name "GitHub Action"
+      - run: .github/workflows/ci-update-to-latest.sh ${{ github.repository }}

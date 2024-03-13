@@ -40,6 +40,11 @@ helm.sh/chart: {{ include "zot.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 {{- end }}
 
 {{/*
@@ -59,4 +64,26 @@ Create the name of the service account to use
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
+{{- end }}
+
+{{- define "resource.vpa.enabled" -}}
+{{- if and (or (.Capabilities.APIVersions.Has "autoscaling.k8s.io/v1") (.Values.giantswarm.verticalPodAutoscaler.force)) (.Values.giantswarm.verticalPodAutoscaler.enabled) }}true{{ else }}false{{ end }}
+{{- end -}}
+
+{{- define "resource.zot.resources" -}}
+requests:
+{{ toYaml .Values.resources.requests | indent 2 -}}
+{{ if eq (include "resource.vpa.enabled" .) "false" }}
+limits:
+{{ toYaml .Values.resources.limits | indent 2 -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "resource.test.resources" -}}
+requests:
+{{ toYaml .Values.testPodResources.requests | indent 2 -}}
+{{ if eq (include "resource.vpa.enabled" .) "false" }}
+limits:
+{{ toYaml .Values.testPodResources.limits | indent 2 -}}
+{{- end -}}
 {{- end }}

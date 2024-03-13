@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "zot.fullname" . }}-test-connection-fails"
+  labels:
+    {{- include "zot.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded,hook-failed
+spec:
+  securityContext:
+    {{- toYaml .Values.podSecurityContext | nindent 4 }}
+  containers:
+    - name: wget
+      image: "{{ .Values.giantswarm.images.registry }}/{{ .Values.giantswarm.images.alpine.image }}:{{ .Values.giantswarm.images.alpine.tag }}"
+      resources:
+        {{- include "resource.zot.resources" . | nindent 8 }}
+      command:
+      - sh
+      - -c
+      - |
+        scheme="http"
+        {{- if eq $.Values.httpGet.scheme "HTTPS"}}
+          scheme="https"
+        {{- end }}
+        echo "$scheme"
+        {{- if .Values.authHeader }}
+          wget --no-check-certificate -o output $scheme://{{ include "zot.fullname" . }}:{{ .Values.service.port }}/v2/_catalog  || (grep Unauthorized output)
+        {{- else }}
+          wget --no-check-certificate $scheme://{{ include "zot.fullname" . }}:{{ .Values.service.port }}/v2/_catalog
+        {{- end }}
+  restartPolicy: Never
