@@ -1,8 +1,9 @@
 apiVersion: v2
-appVersion: v2.0.2-rc2
+appVersion: v2.0.2
 description: A Helm chart for Kubernetes
 name: zot
 type: application
+<<<<<<< HEAD
 version: 0.1.2
 keywords:
   - kubernetes-zot-registry
@@ -15,3 +16,6 @@ annotations:
 restrictions:
   clusterSingleton: false
   namespaceSingleton: false
+=======
+version: 0.1.52
+>>>>>>> 83fb88a4895a388339bea0eb8d5a432920f904bb
