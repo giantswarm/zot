@@ -198,13 +198,16 @@ pvc:
   create: false
   # Name of the PVC to use or create if persistence is enabled, if not set the
   # value '$CHART_RELEASE-pvc' is used
-  name: null
+  name:
   # Volume access mode, if using more than one replica we need
   accessMode: "ReadWriteOnce"
   # Size of the volume requested
   storage: 8Gi
   # Name of the storage class to use if it is different than the default one
   storageClassName: ""
+  policyException:
+    enforce: false
+    namespace: policy-exceptions
 # List of environment variables to set on the container
 env:
 # - name: "TEST"
