@@ -15,6 +15,7 @@ spec:
 {{- end }}
 
 {{- if or (.Capabilities.APIVersions.Has "kyverno.io/v2alpha1/PolicyException") (eq .Values.pvc.policyException.enforce true) }}
+---
 apiVersion: kyverno.io/v2alpha1
 kind: PolicyException
 metadata:
