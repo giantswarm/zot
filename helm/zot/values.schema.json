@@ -197,6 +197,17 @@
                 "name": {
                     "type": "null"
                 },
+                "policyException": {
+                    "type": "object",
+                    "properties": {
+                        "enforce": {
+                            "type": "boolean"
+                        },
+                        "namespace": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "storage": {
                     "type": "string"
                 },
@@ -356,6 +367,14 @@
                 },
                 "periodSeconds": {
                     "type": "integer"
+                }
+            }
+        },
+        "strategy": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
                 }
             }
         },
