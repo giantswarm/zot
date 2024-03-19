@@ -19,7 +19,7 @@ spec:
 apiVersion: kyverno.io/v2alpha1
 kind: PolicyException
 metadata:
-  name: allow-pvc-{{ .Release.Name | quote }}
+  name: allow-pvc-{{ .Release.Name }}
   {{- if (.Values.pvc.policyException).namespace }}
   namespace: {{ .Values.pvc.policyException.namespace }}
   {{- end }}
