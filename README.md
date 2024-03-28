@@ -1,6 +1,6 @@
 # Zot chart
 
-This chart installs the Zot registry. It is based on the official upstream chart.
+This chart installs the [Zot](https://zotregistry.dev/) registry. It is based on the official upstream chart.
 
 ## Contributing
 
