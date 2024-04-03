@@ -266,6 +266,9 @@ serviceMonitor:
   #   replacement: $1
   #   action: replace
   #
+  basicAuth: {}
+  # username: user
+  # password: 12345
 global:
   podSecurityStandards:
     enforced: false

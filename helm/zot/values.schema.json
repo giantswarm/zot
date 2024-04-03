@@ -333,6 +333,9 @@
                 "additionalLabels": {
                     "type": "object"
                 },
+                "basicAuth": {
+                    "type": "object"
+                },
                 "enabled": {
                     "type": "boolean"
                 },

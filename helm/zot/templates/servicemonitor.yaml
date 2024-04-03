@@ -25,4 +25,25 @@ spec:
     relabelings:
       {{- toYaml . | nindent 6 }}
     {{- end }}
+    {{- with .Values.serviceMonitor.basicAuth }}
+    basicAuth:
+      password:
+        name: {{ include "zot.fullname" $ }}-sm-auth
+        key: password
+      username:
+        name: {{ include "zot.fullname" $ }}-sm-auth
+        key: username
+    {{- end }}
+{{- if .Values.serviceMonitor.basicAuth }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "zot.fullname" . }}-sm-auth
+  labels:
+    {{- include "zot.labels" . | nindent 4 }}
+data:
+  username: {{ print .Values.serviceMonitor.basicAuth.username | b64enc }}
+  password: {{ print .Values.serviceMonitor.basicAuth.password | b64enc }}
+{{- end }}
 {{- end }}
