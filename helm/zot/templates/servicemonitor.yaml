@@ -38,7 +38,7 @@ spec:
 ---
 apiVersion: v1
 kind: Secret
-metadata: 
+metadata:
   name: {{ include "zot.fullname" . }}-sm-auth
   labels:
     {{- include "zot.labels" . | nindent 4 }}
