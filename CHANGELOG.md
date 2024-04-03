@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [0.2.0] - 2024-04-03
-- added: 
+- added:
     - an ability to use basic auth for service monitor
 
 ## [0.1.5] - 2024-03-19
