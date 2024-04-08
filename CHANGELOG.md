@@ -9,25 +9,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.1] - 2024-04-08
 
+- update to zot 2.0.3
+
 ## [0.3.0] - 2024-04-08
+
 - added:
-    - mount an emptyDir volume to /tmp
+  - mount an emptyDir volume to /tmp
+
 ## [0.2.0] - 2024-04-03
+
 - added:
-    - an ability to use basic auth for service monitor
+  - an ability to use basic auth for service monitor
 
 ## [0.1.5] - 2024-03-19
+
 - fixed:
-    - remove extra quotes from the policy expection name
+  - remove extra quotes from the policy expection name
+
 ## [0.1.4] - 2024-03-19
 
 ## [0.1.4] - 2024-03-19
+
 - fixed:
-    - Add separating dashes to the pvc template
+  - Add separating dashes to the pvc template
+
 ## [0.1.3] - 2024-03-19
+
 - added:
-    - Add a Kyverno Exception to allow PVCs
+  - Add a Kyverno Exception to allow PVCs
+
 ## [0.1.2] - 2024-03-13
+
 - fixed:
   - Remove duplicating labels
 
