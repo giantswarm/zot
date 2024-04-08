@@ -51,6 +51,8 @@ spec:
               protocol: TCP
           {{- if or (not (empty .Values.extraVolumeMounts)) .Values.mountConfig .Values.mountSecret .Values.persistence .Values.externalSecrets }}
           volumeMounts:
+            - mountPath: /tmp
+              name: tmp
           {{- if .Values.mountConfig }}
             - mountPath: '/etc/zot'
               name: {{ .Release.Name }}-config
@@ -110,6 +112,8 @@ spec:
             {{- include "resource.zot.resources" . | nindent 12 }}
       {{- if or .Values.mountConfig .Values.mountSecret .Values.persistence .Values.externalSecrets (not (empty .Values.extraVolumes))}}
       volumes:
+        - name: tmp
+          emptyDir: {}
       {{- if .Values.mountConfig }}
         - name: {{ .Release.Name }}-config
           configMap:
