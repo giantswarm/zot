@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
+- added: 
+    - mount an emptyDir volume to /tmp
 ## [0.2.0] - 2024-04-03
 - added:
     - an ability to use basic auth for service monitor
