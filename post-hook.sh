@@ -14,3 +14,4 @@ yq ".version = load(\"$THEIRS\").version" -i "$OURS"
 yq ".upstreamChartVersion = load(\"$THEIRS\").version" -i "$OURS"
 
 cp "$OURS" "$FILE_PATH"
+git add "$FILE_PATH"
