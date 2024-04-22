@@ -303,7 +303,10 @@
                     "type": "null"
                 },
                 "nodePort": {
-                    "type": "integer"
+                    "type": [
+                        "null",
+                        "integer"
+                    ]
                 },
                 "port": {
                     "type": "integer"
