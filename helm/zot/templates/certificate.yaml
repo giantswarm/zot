@@ -2,12 +2,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullname }}
   labels:
     {{- include "zot.labels" . | nindent 4 }}
 spec:
   commonName: zot-edge-cache
-  secretName: "{{ $fullName }}-cert"
+  secretName: "{{ $fullname }}-cert"
   ipAddresses:
     - 127.0.0.0.1
   privateKey:
