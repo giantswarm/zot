@@ -2,6 +2,25 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "certificate": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "issuer": {
+                    "type": "object",
+                    "properties": {
+                        "kind": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "configFiles": {
             "type": "object",
             "properties": {

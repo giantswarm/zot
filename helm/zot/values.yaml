@@ -269,6 +269,11 @@ serviceMonitor:
   basicAuth: {}
   # username: user
   # password: 12345
+certificate:
+  enabled: true
+  issuer:
+    kind: ClusterIssuer
+    name: giantswarm-selfsigned
 global:
   podSecurityStandards:
     enforced: false

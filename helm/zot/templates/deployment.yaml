@@ -69,6 +69,10 @@ spec:
             - mountPath: '/var/lib/registry'
               name: {{ .Release.Name }}-volume
           {{- end }}
+          {{- if .Values.certificate.enabled }}
+            - mountPath: '/certificate'
+              name: certificate
+          {{- end }}
           {{- with .Values.extraVolumeMounts }}
           {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -114,6 +118,11 @@ spec:
       volumes:
         - name: tmp
           emptyDir: {}
+      {{- if .Values.certificate.enabled }}
+        - name: certificate
+          secret:
+            secretName: "{{ $fullName }}-cert"
+      {{- end }}
       {{- if .Values.mountConfig }}
         - name: {{ .Release.Name }}-config
           configMap:
