@@ -121,7 +121,7 @@ spec:
       {{- if .Values.certificate.enabled }}
         - name: certificate
           secret:
-            secretName: "{{ $fullname }}-cert"
+            secretName: {{ include "zot.fullname" . }}-cert
       {{- end }}
       {{- if .Values.mountConfig }}
         - name: {{ .Release.Name }}-config
