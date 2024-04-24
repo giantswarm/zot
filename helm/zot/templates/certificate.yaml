@@ -9,7 +9,7 @@ spec:
   commonName: zot-edge-cache
   secretName: {{ include "zot.fullname" . }}-cert
   ipAddresses:
-    - 127.0.0.0.1
+    - 127.0.0.1
   privateKey:
     algorithm: ECDSA
     size: 256
