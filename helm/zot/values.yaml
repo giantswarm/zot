@@ -270,7 +270,7 @@ serviceMonitor:
   # username: user
   # password: 12345
 certificate:
-  enabled: true
+  enabled: false
   issuer:
     kind: ClusterIssuer
     name: giantswarm-selfsigned
