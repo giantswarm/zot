@@ -19,7 +19,7 @@
     },
     "env": {
       "default": "",
-      "description": "List of environment variables to set on the container",
+      "description": "@scheme\nrequired: false\n@scheme\nList of environment variables to set on the container",
       "title": "env",
       "type": "null"
     },
@@ -383,7 +383,7 @@
         },
         "name": {
           "default": "",
-          "description": "Name of the PVC to use or create if persistence is enabled, if not set the\nvalue '$CHART_RELEASE-pvc' is used",
+          "description": "@scheme\nrequired: false\n@scheme\nName of the PVC to use or create if persistence is enabled, if not set the\nvalue '$CHART_RELEASE-pvc' is used",
           "title": "name",
           "type": "null"
         },
@@ -597,9 +597,12 @@
         },
         "clusterIP": {
           "default": "null",
-          "description": "Set to a static IP if a static IP is desired, only works when\ntype: ClusterIP\ntype: [string, null]",
+          "description": "Set to a static IP if a static IP is desired, only works when",
           "title": "clusterIP",
-          "type": "null"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "nodePort": {
           "default": "null",
@@ -625,8 +628,7 @@
       "required": [
         "type",
         "port",
-        "annotations",
-        "clusterIP"
+        "annotations"
       ]
     },
     "serviceAccount": {

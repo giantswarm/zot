@@ -75,9 +75,11 @@ service:
   nodePort: null
   # Annotations to add to the service
   annotations: {}
-  # Set to a static IP if a static IP is desired, only works when
-  # type: ClusterIP
+  # @schema
+  # required: false
   # type: [string, null]
+  # @schema
+  # Set to a static IP if a static IP is desired, only works when
   clusterIP: null
 # Enabling this will publicly expose your zot server
 # Only enable this if you have security enabled on your cluster
@@ -198,6 +200,9 @@ pvc:
   # can create volumes dynamically, if that is not the case is better to do it
   # manually and set create to false
   create: false
+  # @scheme
+  # required: false
+  # @scheme
   # Name of the PVC to use or create if persistence is enabled, if not set the
   # value '$CHART_RELEASE-pvc' is used
   name:
@@ -210,6 +215,9 @@ pvc:
   policyException:
     enforce: false
     namespace: policy-exceptions
+# @scheme
+# required: false
+# @scheme
 # List of environment variables to set on the container
 env:
 # - name: "TEST"
