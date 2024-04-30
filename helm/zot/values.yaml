@@ -200,9 +200,9 @@ pvc:
   # can create volumes dynamically, if that is not the case is better to do it
   # manually and set create to false
   create: false
-  # @scheme
+  # @schema
   # required: false
-  # @scheme
+  # @schema
   # Name of the PVC to use or create if persistence is enabled, if not set the
   # value '$CHART_RELEASE-pvc' is used
   name:
@@ -215,9 +215,10 @@ pvc:
   policyException:
     enforce: false
     namespace: policy-exceptions
-# @scheme
+# @schema
 # required: false
-# @scheme
+# type: [array, null]
+# @schema
 # List of environment variables to set on the container
 env:
 # - name: "TEST"

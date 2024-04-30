@@ -19,9 +19,12 @@
     },
     "env": {
       "default": "",
-      "description": "@scheme\nrequired: false\n@scheme\nList of environment variables to set on the container",
+      "description": "List of environment variables to set on the container",
       "title": "env",
-      "type": "null"
+      "type": [
+        "array",
+        "null"
+      ]
     },
     "externalSecrets": {
       "items": {},
@@ -383,9 +386,8 @@
         },
         "name": {
           "default": "",
-          "description": "@scheme\nrequired: false\n@scheme\nName of the PVC to use or create if persistence is enabled, if not set the\nvalue '$CHART_RELEASE-pvc' is used",
-          "title": "name",
-          "type": "null"
+          "description": "Name of the PVC to use or create if persistence is enabled, if not set the\nvalue '$CHART_RELEASE-pvc' is used",
+          "title": "name"
         },
         "policyException": {
           "additionalProperties": false,
@@ -426,7 +428,6 @@
       "type": "object",
       "required": [
         "create",
-        "name",
         "accessMode",
         "storage",
         "storageClassName",
@@ -853,7 +854,6 @@
     "secretFiles",
     "persistence",
     "pvc",
-    "env",
     "extraVolumeMounts",
     "extraVolumes",
     "strategy",
