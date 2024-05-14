@@ -65,21 +65,3 @@ Create the name of the service account to use
 {{- define "resource.vpa.enabled" -}}
 {{- if and (or (.Capabilities.APIVersions.Has "autoscaling.k8s.io/v1") (.Values.giantswarm.verticalPodAutoscaler.force)) (.Values.giantswarm.verticalPodAutoscaler.enabled) }}true{{ else }}false{{ end }}
 {{- end -}}
-
-{{- define "resource.zot.resources" -}}
-requests:
-{{ toYaml .Values.resources.requests | indent 2 -}}
-{{ if eq (include "resource.vpa.enabled" .) "false" }}
-limits:
-{{ toYaml .Values.resources.limits | indent 2 -}}
-{{- end -}}
-{{- end -}}
-
-{{- define "resource.test.resources" -}}
-requests:
-{{ toYaml .Values.testPodResources.requests | indent 2 -}}
-{{ if eq (include "resource.vpa.enabled" .) "false" }}
-limits:
-{{ toYaml .Values.testPodResources.limits | indent 2 -}}
-{{- end -}}
-{{- end }}
