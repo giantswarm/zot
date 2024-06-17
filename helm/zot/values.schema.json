@@ -11,7 +11,7 @@
             }
         },
         "env": {
-            "type": "null"
+            "type": "array"
         },
         "externalSecrets": {
             "type": "array"
@@ -63,6 +63,17 @@
                         },
                         "force": {
                             "type": "boolean"
+                        },
+                        "maxAllowed": {
+                            "type": "object",
+                            "properties": {
+                                "cpu": {
+                                    "type": "string"
+                                },
+                                "memory": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
                 }
@@ -185,6 +196,9 @@
                 }
             }
         },
+        "priorityClassName": {
+            "type": "string"
+        },
         "pvc": {
             "type": "object",
             "properties": {
@@ -303,7 +317,7 @@
                     "type": "null"
                 },
                 "nodePort": {
-                    "type": "null"
+                    "type": "integer"
                 },
                 "port": {
                     "type": "integer"
