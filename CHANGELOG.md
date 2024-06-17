@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-06-17
+
 ### Added
 
 - Added support for setting `.spec.template.spec.priorityClassName` for the Zot deployment via Helm value `.priorityClassName`.
@@ -65,7 +67,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - initial release compatible with vintage and CAPI
 
-[Unreleased]: https://github.com/giantswarm/zot/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/giantswarm/zot/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/giantswarm/zot/compare/v0.3.1...v1.0.0
 [0.3.1]: https://github.com/giantswarm/zot/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/giantswarm/zot/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/giantswarm/zot/compare/v0.1.5...v0.2.0
