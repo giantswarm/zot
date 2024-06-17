@@ -18,7 +18,7 @@ spec:
       targetPort: zot
       protocol: TCP
       name: zot
-      {{- if .Values.service.nodePort }}
+      {{- if eq ( lower .Values.service.type) "nodeport" }}
       nodePort: {{ .Values.service.nodePort }}
       {{- end }}
   selector:

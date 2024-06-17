@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added support for setting `.spec.template.spec.priorityClassName` for the Zot deployment via Helm value `.priorityClassName`.
+  Defaults to empty string, meaning a priority class does not get set by default.
+- Added setting to VPA to control max allowed CPU and memory. Defaults to `750m` and `2048Mi`.
+
+### Changed
+
+- Changed default service type to `ClusterIP`.
+- Changed default node port to `32767` and it is added to the service only when service type is `NodePort`.
+- Enabled `PVC` creation by default.
+- Changed default resource requests to `300m` CPU and `1024Mi` memory, limits to `500m` CPU and `1536Mi` memory.
+
 ## [0.3.1] - 2024-04-08
 
 - update to zot 2.0.3

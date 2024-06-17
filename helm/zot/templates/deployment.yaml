@@ -35,6 +35,9 @@ spec:
       serviceAccountName: {{ include "zot.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.priorityClassName }}
+      priorityClassName: {{ .Values.priorityClassName }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           {{- if .Values.securityContext }}
@@ -43,8 +46,10 @@ spec:
           {{- end }}
           image: "{{ .Values.giantswarm.images.registry }}/{{ .Values.giantswarm.images.zot.image }}:{{ .Values.giantswarm.images.zot.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.env }}
           env:
             {{- toYaml .Values.env | nindent 12 }}
+          {{- end }}
           ports:
             - name: zot
               containerPort: 5000
@@ -109,7 +114,7 @@ spec:
                   value: Basic {{ .Values.authHeader }}
               {{- end }}
           resources:
-            {{- include "resource.zot.resources" . | nindent 12 }}
+            {{- toYaml .Values.resources | nindent 12 }}
       {{- if or .Values.mountConfig .Values.mountSecret .Values.persistence .Values.externalSecrets (not (empty .Values.extraVolumes))}}
       volumes:
         - name: tmp
