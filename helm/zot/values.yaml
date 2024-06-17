@@ -13,14 +13,17 @@ giantswarm:
     enabled: true
     # Enables bypassing "autoscaling.k8s.io/v1" check; use with care
     force: false
+    maxAllowed:
+      cpu: 750m
+      memory: 2048Mi
 
 resources:
   requests:
-    cpu: 500m
-    memory: 512Mi
-  limits:
-    cpu: 1000m
+    cpu: 300m
     memory: 1024Mi
+  limits:
+    cpu: 500m
+    memory: 1536Mi
 
 testPodResources:
   requests:
@@ -51,6 +54,8 @@ securityContext:
   seccompProfile:
     type: RuntimeDefault
 
+priorityClassName: ""
+
 # Default values for zot.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -69,9 +74,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 service:
-  type: NodePort
+  type: ClusterIP
   port: 5000
-  nodePort: null
+  nodePort: 32767
   # Annotations to add to the service
   annotations: {}
   # Set to a static IP if a static IP is desired, only works when
@@ -189,13 +194,13 @@ secretFiles:
 # If persistence is 'true' the service uses a persistentVolumeClaim to mount a
 # volume for zot on '/var/lib/registry'; by default the pvc used is named
 # '$CHART_RELEASE-pvc', but the name can be changed below
-persistence: false
+persistence: true
 # PVC data, only used if persistence is 'true'
 pvc:
   # Make the chart create the PVC, this option is used with storageClasses that
   # can create volumes dynamically, if that is not the case is better to do it
   # manually and set create to false
-  create: false
+  create: true
   # Name of the PVC to use or create if persistence is enabled, if not set the
   # value '$CHART_RELEASE-pvc' is used
   name:
@@ -203,13 +208,13 @@ pvc:
   accessMode: "ReadWriteOnce"
   # Size of the volume requested
   storage: 8Gi
-  # Name of the storage class to use if it is different than the default one
+  # Name of the storage class to use if it is different from the default one
   storageClassName: ""
   policyException:
     enforce: false
     namespace: policy-exceptions
 # List of environment variables to set on the container
-env:
+env: []
 # - name: "TEST"
 #  value: "ME"
 # - name: SECRET_NAME
