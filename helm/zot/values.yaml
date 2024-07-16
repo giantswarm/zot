@@ -211,6 +211,10 @@ pvc:
   policyException:
     enforce: false
     namespace: policy-exceptions
+
+# Argument overrides to set on the container
+arguments: []
+
 # List of environment variables to set on the container
 env: []
 # - name: "TEST"

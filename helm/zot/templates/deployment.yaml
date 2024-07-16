@@ -43,6 +43,10 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- if .Values.arguments }}
+          args:
+            {{- .Values.arguments | toYaml | nindent 12 }}
+          {{- end }}
           {{- if .Values.securityContext }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
