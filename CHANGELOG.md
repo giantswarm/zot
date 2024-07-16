@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update to `project-zot/helm-charts` version `0.1.58`.
+  - Update Default Zot container image tag to version [v2.1.0](https://github.com/project-zot/zot/releases/tag/v2.1.0)
+
 ## [1.0.0] - 2024-06-17
 
 ### Added

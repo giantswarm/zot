@@ -64,7 +64,7 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.0.4"
+  tag: "v2.1.0"
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -121,9 +121,7 @@ startupProbe:
 mountConfig: true
 # If mountConfig is true the chart creates the '$CHART_RELEASE-config', if it
 # does not exist the user is in charge of managing it (as this file includes a
-# sample file you have to add it empty to handle it externally) ... note that
-# the service does not reload the configFiles once mounted, so you need to
-# delete the pods to create new ones to use the new values.
+# sample file you have to add it empty to handle it externally).
 configFiles:
   config.json: |-
     {
