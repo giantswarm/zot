@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 {{- if .Values.serviceMonitor.enabled }}
 apiVersion: "monitoring.coreos.com/v1"
+=======
+{{- if .Values.metrics }}
+{{- if .Values.metrics.enabled }}
+{{- if .Values.metrics.serviceMonitor }}
+{{- if .Values.metrics.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+>>>>>>> 1ad87da50c2bc6fa19a81742501b479470f56996
 kind: ServiceMonitor
 metadata:
   name: {{ include "zot.fullname" . }}
   labels:
+<<<<<<< HEAD
     {{- include "zot.labels" . | nindent 4 }}
 spec:
   selector:
@@ -45,5 +54,34 @@ metadata:
 data:
   username: {{ print .Values.serviceMonitor.basicAuth.username | b64enc }}
   password: {{ print .Values.serviceMonitor.basicAuth.password | b64enc }}
+=======
+    app.kubernetes.io/component: metrics
+spec:
+  {{- if .Values.metrics.serviceMonitor.jobLabel }}
+  jobLabel: {{ .Values.metrics.serviceMonitor.jobLabel }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "zot.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: zot
+      {{- if .Values.metrics.serviceMonitor.interval }}
+      interval: {{ .Values.metrics.serviceMonitor.interval }}
+      {{- end }}
+      {{- if .Values.metrics.serviceMonitor.scrapeTimeout }}
+      scrapeTimeout: {{ .Values.metrics.serviceMonitor.scrapeTimeout }}
+      {{- end }}
+      {{- if .Values.metrics.serviceMonitor.path }}
+      path: {{ .Values.metrics.serviceMonitor.path }}
+      {{- end }}
+      {{- if .Values.metrics.serviceMonitor.scheme }}
+      scheme: {{ .Values.metrics.serviceMonitor.scheme }}
+      {{- end }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+{{- end }}
+{{- end }}
+>>>>>>> 1ad87da50c2bc6fa19a81742501b479470f56996
 {{- end }}
 {{- end }}
