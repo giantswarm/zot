@@ -156,6 +156,52 @@
                 }
             }
         },
+        "metrics": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "serviceMonitor": {
+                    "type": "object",
+                    "properties": {
+                        "additionalLabels": {
+                            "type": "object"
+                        },
+                        "basicAuth": {
+                            "type": "object"
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "honorLabels": {
+                            "type": "boolean"
+                        },
+                        "interval": {
+                            "type": "string"
+                        },
+                        "jobLabel": {
+                            "type": "string"
+                        },
+                        "metricRelabelings": {
+                            "type": "array"
+                        },
+                        "path": {
+                            "type": "string"
+                        },
+                        "relabelings": {
+                            "type": "array"
+                        },
+                        "scheme": {
+                            "type": "string"
+                        },
+                        "scrapeTimeout": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "mountConfig": {
             "type": "boolean"
         },
@@ -337,38 +383,6 @@
                     "type": "boolean"
                 },
                 "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "serviceMonitor": {
-            "type": "object",
-            "properties": {
-                "additionalLabels": {
-                    "type": "object"
-                },
-                "basicAuth": {
-                    "type": "object"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "honorLabels": {
-                    "type": "boolean"
-                },
-                "interval": {
-                    "type": "string"
-                },
-                "metricRelabelings": {
-                    "type": "array"
-                },
-                "namespace": {
-                    "type": "string"
-                },
-                "relabelings": {
-                    "type": "array"
-                },
-                "scrapeTimeout": {
                     "type": "string"
                 }
             }
