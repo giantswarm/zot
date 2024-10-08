@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Changed
+
+- Bump default `zot` image tag to `v2.1.1`.
+
 ## [1.1.0] - 2024-07-16
 
 ### Changed
