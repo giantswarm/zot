@@ -265,9 +265,9 @@ metrics:
     # -- Let prometheus add an exported_ prefix to conflicting labels
     honorLabels: false
     # -- Additional labels
-    additionalLabels: { }
+    additionalLabels: {}
     # -- Metric relabel configs to apply to samples before ingestion. [Metric Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs)
-    metricRelabelings: [ ]
+    metricRelabelings: []
     # - action: replace
     #   regex: (.*)
     #   replacement: $1
@@ -275,13 +275,13 @@ metrics:
     #   - exported_namespace
     #   targetLabel: namespace
     # -- Relabel configs to apply to samples before ingestion. [Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
-    relabelings: [ ]
+    relabelings: []
     # - sourceLabels: [__meta_kubernetes_pod_node_name]
     #   separator: ;
     #   regex: ^(.*)$
     #   targetLabel: nodename
     #   replacement: $1
     #   action: replace
-    basicAuth: { }
+    basicAuth: {}
     # username: user
     # password: 12345
