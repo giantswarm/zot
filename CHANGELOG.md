@@ -9,7 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Changed
 
+- Moved `.serviceMonitor` Helm values under `.metrics` to conform upstream chart.
+  - Additionally, now `.metrics.enabled` and `.metrics.serviceMonitor.enabled` must both be set to true to deploy
+    the ServiceMonitor to conform upstream.
 - Bump default `zot` image tag to `v2.1.1`.
+
+## Removed
+
+- Removed `.serviceMonitor.namespace` as it was not used and upstream does not use it either.
 
 ## [1.1.0] - 2024-07-16
 
