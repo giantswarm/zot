@@ -237,11 +237,26 @@ strategy:
 #  rollingUpdate:
 #    maxUnavailable: 25%
 
+# Extra args to pass to the deployment's container
+extraArgs: []
+
 podAnnotations: {}
 
+<<<<<<< HEAD
 global:
   podSecurityStandards:
     enforced: false
+=======
+podLabels: {}
+
+deploymentAnnotations: {}
+
+priorityClassName: ""
+
+dnsConfig: {}
+
+dnsPolicy: "ClusterFirst"
+>>>>>>> dacbb94c426f2d0a1c92cda5297324ad506cdceb
 
 # Metrics configuration
 # NOTE: need enable metric extension in config.json
