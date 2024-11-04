@@ -51,9 +51,6 @@ spec:
           name: {{ include "zot.fullname" $ }}-sm-auth
           key: username
       {{- end }}
-  namespaceSelector:
-    matchNames:
-      - {{ .Release.Namespace }}
 {{- if .Values.metrics.serviceMonitor.basicAuth }}
 ---
 apiVersion: v1
