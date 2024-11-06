@@ -64,7 +64,13 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
+<<<<<<< HEAD
   tag: "v2.1.1"
+=======
+  tag: "v2.1.2-rc3"
+# Defaults to the release namespace if not specified
+namespace: ""
+>>>>>>> cd21686599f2c8094d67799e22766d37d1e6cc98
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -237,12 +243,22 @@ strategy:
 #  rollingUpdate:
 #    maxUnavailable: 25%
 
+# Extra args to pass to the deployment's container
+extraArgs: []
 podAnnotations: {}
+<<<<<<< HEAD
 
 global:
   podSecurityStandards:
     enforced: false
 
+=======
+podLabels: {}
+deploymentAnnotations: {}
+priorityClassName: ""
+dnsConfig: {}
+dnsPolicy: "ClusterFirst"
+>>>>>>> cd21686599f2c8094d67799e22766d37d1e6cc98
 # Metrics configuration
 # NOTE: need enable metric extension in config.json
 metrics:
