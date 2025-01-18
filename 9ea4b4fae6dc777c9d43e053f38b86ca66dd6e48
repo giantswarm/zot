@@ -1,0 +1,1 @@
+upstream sync: URL='https://github.com/project-zot/helm-charts.git' SYNC_REF='zot-0.1.66' REMOTE_DIR='charts/zot' DOWN_DIR='helm/zot/'
