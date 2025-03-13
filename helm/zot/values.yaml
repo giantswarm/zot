@@ -292,9 +292,3 @@ metrics:
     basicAuth: {}
     # username: user
     # password: 12345
-
-# Test hooks configuration
-test:
-  image:
-    repository: alpine
-    tag: "3.18"
