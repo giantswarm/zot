@@ -46,13 +46,8 @@ spec:
       serviceAccountName: {{ include "zot.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-<<<<<<< HEAD
-      {{- if .Values.priorityClassName }}
-      priorityClassName: {{ .Values.priorityClassName }}
-=======
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ . }}
->>>>>>> d2c8056f9e3f543018003e58c2e5b52d6ef6d66e
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
@@ -62,14 +57,10 @@ spec:
           {{- end }}
           image: "{{ .Values.giantswarm.images.registry }}/{{ .Values.giantswarm.images.zot.image }}:{{ .Values.giantswarm.images.zot.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-<<<<<<< HEAD
-          {{- if .Values.env }}
-=======
           {{- with .Values.extraArgs }}
           args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
->>>>>>> d2c8056f9e3f543018003e58c2e5b52d6ef6d66e
           env:
             {{- toYaml .Values.env | nindent 12 }}
           {{- end }}

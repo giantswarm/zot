@@ -64,13 +64,9 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-<<<<<<< HEAD
-  tag: "v2.1.1"
-=======
   tag: "v2.1.2"
 # Defaults to the release namespace if not specified
 namespace: ""
->>>>>>> d2c8056f9e3f543018003e58c2e5b52d6ef6d66e
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -246,19 +242,16 @@ strategy:
 # Extra args to pass to the deployment's container
 extraArgs: []
 podAnnotations: {}
-<<<<<<< HEAD
-
-global:
-  podSecurityStandards:
-    enforced: false
-
-=======
 podLabels: {}
 deploymentAnnotations: {}
 priorityClassName: ""
 dnsConfig: {}
 dnsPolicy: "ClusterFirst"
->>>>>>> d2c8056f9e3f543018003e58c2e5b52d6ef6d66e
+
+global:
+  podSecurityStandards:
+    enforced: false
+
 # Metrics configuration
 # NOTE: need enable metric extension in config.json
 metrics:
@@ -274,35 +267,6 @@ metrics:
     scheme: ""
     # Specify the interval at which metrics should be scraped
     interval: "30s"
-<<<<<<< HEAD
-    # -- Timeout if metrics can't be retrieved in given time interval
-    scrapeTimeout: 25s
-    # -- Selects the label from the associated Kubernetes `Service` object which will be used as the `job` label for all metrics.
-    jobLabel: ""
-    # -- Let prometheus add an exported_ prefix to conflicting labels
-    honorLabels: false
-    # -- Additional labels
-    additionalLabels: {}
-    # -- Metric relabel configs to apply to samples before ingestion. [Metric Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs)
-    metricRelabelings: []
-    # - action: replace
-    #   regex: (.*)
-    #   replacement: $1
-    #   sourceLabels:
-    #   - exported_namespace
-    #   targetLabel: namespace
-    # -- Relabel configs to apply to samples before ingestion. [Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
-    relabelings: []
-    # - sourceLabels: [__meta_kubernetes_pod_node_name]
-    #   separator: ;
-    #   regex: ^(.*)$
-    #   targetLabel: nodename
-    #   replacement: $1
-    #   action: replace
-    basicAuth: {}
-    # username: user
-    # password: 12345
-=======
     # Specify the path to scrape metrics from
     path: "/metrics"
 
@@ -311,4 +275,3 @@ test:
   image:
     repository: alpine
     tag: "3.18"
->>>>>>> d2c8056f9e3f543018003e58c2e5b52d6ef6d66e

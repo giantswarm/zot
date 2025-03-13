@@ -3,12 +3,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-<<<<<<< HEAD
-  name: "{{ .Release.Name }}-config"
-=======
   name: {{ .Release.Name }}-config
   namespace: {{ .Values.namespace | default .Release.Namespace }}
->>>>>>> d2c8056f9e3f543018003e58c2e5b52d6ef6d66e
 data:
 {{- range $key, $val := .Values.configFiles }}
   {{ $key }}: {{ $val | quote }}
