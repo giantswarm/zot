@@ -54,8 +54,6 @@ securityContext:
   seccompProfile:
     type: RuntimeDefault
 
-priorityClassName: ""
-
 # Default values for zot.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -267,8 +265,33 @@ metrics:
     scheme: ""
     # Specify the interval at which metrics should be scraped
     interval: "30s"
-    # Specify the path to scrape metrics from
-    path: "/metrics"
+    # -- Timeout if metrics can't be retrieved in given time interval
+    scrapeTimeout: 25s
+    # -- Selects the label from the associated Kubernetes `Service` object which will be used as the `job` label for all metrics.
+    jobLabel: ""
+    # -- Let prometheus add an exported_ prefix to conflicting labels
+    honorLabels: false
+    # -- Additional labels
+    additionalLabels: {}
+    # -- Metric relabel configs to apply to samples before ingestion. [Metric Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs)
+    metricRelabelings: []
+    # - action: replace
+    #   regex: (.*)
+    #   replacement: $1
+    #   sourceLabels:
+    #   - exported_namespace
+    #   targetLabel: namespace
+    # -- Relabel configs to apply to samples before ingestion. [Relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config)
+    relabelings: []
+    # - sourceLabels: [__meta_kubernetes_pod_node_name]
+    #   separator: ;
+    #   regex: ^(.*)$
+    #   targetLabel: nodename
+    #   replacement: $1
+    #   action: replace
+    basicAuth: {}
+    # username: user
+    # password: 12345
 
 # Test hooks configuration
 test:
