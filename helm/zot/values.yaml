@@ -54,8 +54,6 @@ securityContext:
   seccompProfile:
     type: RuntimeDefault
 
-priorityClassName: ""
-
 # Default values for zot.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -64,7 +62,9 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.1.1"
+  tag: "v2.1.2"
+# Defaults to the release namespace if not specified
+namespace: ""
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -237,7 +237,14 @@ strategy:
 #  rollingUpdate:
 #    maxUnavailable: 25%
 
+# Extra args to pass to the deployment's container
+extraArgs: []
 podAnnotations: {}
+podLabels: {}
+deploymentAnnotations: {}
+priorityClassName: ""
+dnsConfig: {}
+dnsPolicy: "ClusterFirst"
 
 global:
   podSecurityStandards:
