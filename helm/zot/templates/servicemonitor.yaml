@@ -35,6 +35,7 @@ spec:
       {{- if .Values.metrics.serviceMonitor.scheme }}
       scheme: {{ .Values.metrics.serviceMonitor.scheme }}
       {{- end }}
+<<<<<<< HEAD
       {{- with .Values.metrics.serviceMonitor.metricRelabelings }}
       metricRelabelings:
         {{- toYaml . | nindent 6 }}
@@ -64,6 +65,20 @@ data:
   username: {{ print .Values.metrics.serviceMonitor.basicAuth.username | b64enc }}
   password: {{ print .Values.metrics.serviceMonitor.basicAuth.password | b64enc }}
 {{- end }}
+=======
+      {{- if .Values.metrics.serviceMonitor.basicAuth }}
+      basicAuth:
+        password:
+          name: {{ .Values.metrics.serviceMonitor.basicAuth.secretName }}
+          key: {{ .Values.metrics.serviceMonitor.basicAuth.passwordKey | default ("password") }}
+        username:
+          name: {{ .Values.metrics.serviceMonitor.basicAuth.secretName }}
+          key: {{ .Values.metrics.serviceMonitor.basicAuth.usernameKey | default ("username") }}
+      {{- end }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+>>>>>>> 48f072a6674da130dffd07c7b19a29c71c596a9e
 {{- end }}
 {{- end }}
 {{- end }}
