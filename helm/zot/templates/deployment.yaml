@@ -69,6 +69,8 @@ spec:
               containerPort: 5000
               protocol: TCP
           volumeMounts:
+            - mountPath: /tmp
+              name: tmp
             - name: data
               mountPath: /var/lib/registry
           {{- if .Values.mountConfig }}
@@ -124,6 +126,8 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
+        - name: tmp
+          emptyDir: {}
         - name: data
           emptyDir: {}
       {{- if .Values.mountConfig }}
