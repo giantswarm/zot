@@ -265,7 +265,6 @@ metrics:
     scheme: ""
     # Specify the interval at which metrics should be scraped
     interval: "30s"
-<<<<<<< HEAD
     # -- Timeout if metrics can't be retrieved in given time interval
     scrapeTimeout: 25s
     # -- Selects the label from the associated Kubernetes `Service` object which will be used as the `job` label for all metrics.
@@ -293,17 +292,3 @@ metrics:
     basicAuth: {}
     # username: user
     # password: 12345
-=======
-    # Specify the path to scrape metrics from
-    path: "/metrics"
-    # basicAuth credentials for serviceMonitor
-    basicAuth:
-      secretName: basic-auth
-      usernameKey: username
-      passwordKey: password
-# Test hooks configuration
-test:
-  image:
-    repository: alpine
-    tag: "3.18"
->>>>>>> 48f072a6674da130dffd07c7b19a29c71c596a9e

@@ -69,13 +69,8 @@ spec:
               containerPort: 5000
               protocol: TCP
           volumeMounts:
-<<<<<<< HEAD
-            - mountPath: /tmp
-              name: tmp
-=======
             - name: data
               mountPath: /var/lib/registry
->>>>>>> 48f072a6674da130dffd07c7b19a29c71c596a9e
           {{- if .Values.mountConfig }}
             - mountPath: '/etc/zot'
               name: {{ .Release.Name }}-config
@@ -129,11 +124,7 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-<<<<<<< HEAD
-        - name: tmp
-=======
         - name: data
->>>>>>> 48f072a6674da130dffd07c7b19a29c71c596a9e
           emptyDir: {}
       {{- if .Values.mountConfig }}
         - name: {{ .Release.Name }}-config
