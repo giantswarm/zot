@@ -62,7 +62,7 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.1.2"
+  tag: "v2.1.5"
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -203,7 +203,7 @@ pvc:
   # value '$CHART_RELEASE-pvc' is used
   name:
   # Volume access mode, if using more than one replica we need
-  accessMode: "ReadWriteOnce"
+  accessModes: ["ReadWriteOnce"]
   # Size of the volume requested
   storage: 8Gi
   # Name of the storage class to use if it is different from the default one
@@ -265,6 +265,7 @@ metrics:
     scheme: ""
     # Specify the interval at which metrics should be scraped
     interval: "30s"
+<<<<<<< HEAD
     # -- Timeout if metrics can't be retrieved in given time interval
     scrapeTimeout: 25s
     # -- Selects the label from the associated Kubernetes `Service` object which will be used as the `job` label for all metrics.
@@ -292,3 +293,17 @@ metrics:
     basicAuth: {}
     # username: user
     # password: 12345
+=======
+    # Specify the path to scrape metrics from
+    path: "/metrics"
+    # basicAuth credentials for serviceMonitor
+    basicAuth:
+      secretName: basic-auth
+      usernameKey: username
+      passwordKey: password
+# Test hooks configuration
+test:
+  image:
+    repository: alpine
+    tag: "3.18"
+>>>>>>> b8f527ab0efa859fc848c555f92f407143a2ea6e
