@@ -62,7 +62,7 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.1.2"
+  tag: "v2.1.5"
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
