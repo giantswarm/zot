@@ -22,9 +22,15 @@ spec:
           memory: {{ .Values.giantswarm.verticalPodAutoscaler.maxAllowed.memory }}
         mode: Auto
   targetRef:
+  {{- if .Values.persistence }}
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: {{ include "zot.fullname" . }}
+  {{- else }}
     apiVersion: apps/v1
     kind: Deployment
     name: {{ include "zot.fullname" . }}
+  {{- end }}
   updatePolicy:
     updateMode: Auto
 {{ end }}
