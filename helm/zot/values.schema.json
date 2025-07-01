@@ -384,7 +384,7 @@
                     "type": "object"
                 },
                 "clusterIP": {
-                    "type": "string"
+                    "type": ["null","string"]
                 },
                 "nodePort": {
                     "type": "integer"
