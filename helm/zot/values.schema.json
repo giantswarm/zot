@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "properties": {
         "configFiles": {
@@ -10,10 +10,25 @@
                 }
             }
         },
+        "deploymentAnnotations": {
+            "type": "object"
+        },
+        "dnsConfig": {
+            "type": "object"
+        },
+        "dnsPolicy": {
+            "type": "string"
+        },
         "env": {
             "type": "array"
         },
         "externalSecrets": {
+            "type": "array"
+        },
+        "extraArgs": {
+            "type": "array"
+        },
+        "extraContainers": {
             "type": "array"
         },
         "extraVolumeMounts": {
@@ -208,10 +223,16 @@
         "mountSecret": {
             "type": "boolean"
         },
+        "namespace": {
+            "type": "string"
+        },
         "persistence": {
             "type": "boolean"
         },
         "podAnnotations": {
+            "type": "object"
+        },
+        "podLabels": {
             "type": "object"
         },
         "podSecurityContext": {
@@ -248,8 +269,11 @@
         "pvc": {
             "type": "object",
             "properties": {
-                "accessMode": {
-                    "type": "string"
+                "accessModes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "create": {
                     "type": "boolean"
@@ -360,7 +384,7 @@
                     "type": "object"
                 },
                 "clusterIP": {
-                    "type": "null"
+                    "type": "string"
                 },
                 "nodePort": {
                     "type": "integer"
