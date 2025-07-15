@@ -9,7 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.3.0] - 2025-07-15
 
+### Changed
+
+- Upgrade to upstream Helm chart `v0.1.75`
+  - Added support for headless service, see: https://github.com/project-zot/helm-charts/pull/68
+
 ## [2.2.1] - 2025-07-01
+
+### Changed
+
+- Update Helm values schema
 
 ## [2.2.0] - 2025-06-26
 
