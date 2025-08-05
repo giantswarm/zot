@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [2.3.1] - 2025-08-05
 
+## [2.3.1] - 2025-08-05
+
 ### Changed
 
 - Upgrade to upstream Helm chart `v0.1.78` (patch release)
@@ -128,7 +130,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - initial release compatible with vintage and CAPI
 
-[Unreleased]: https://github.com/giantswarm/zot/compare/v2.3.0...HEAD
+[Unreleased]: https://github.com/giantswarm/zot/compare/v2.3.1...HEAD
+[2.3.1]: https://github.com/giantswarm/zot/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/giantswarm/zot/compare/v2.2.1...v2.3.0
 [2.2.1]: https://github.com/giantswarm/zot/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/giantswarm/zot/compare/v2.1.0...v2.2.0
