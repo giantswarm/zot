@@ -9,8 +9,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [2.3.1] - 2025-08-05
 
-## [2.3.1] - 2025-08-05
-
 ### Changed
 
 - Upgrade to upstream Helm chart `v0.1.78` (patch release)
