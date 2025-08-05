@@ -2,10 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to
+[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.3.1] - 2025-08-05
+
+### Changed
+
+- Upgrade to upstream Helm chart `v0.1.78` (patch release)
 
 ## [2.3.0] - 2025-07-15
 
@@ -45,8 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Moved `.serviceMonitor` Helm values under `.metrics` to conform upstream chart.
-  - Additionally, now `.metrics.enabled` and `.metrics.serviceMonitor.enabled` must both be set to true to deploy
-    the ServiceMonitor to conform upstream.
+  - Additionally, now `.metrics.enabled` and `.metrics.serviceMonitor.enabled` must both be set to true to
+    deploy the ServiceMonitor to conform upstream.
 - Bump default `zot` image tag to `v2.1.1`.
 
 ### Removed
@@ -58,14 +64,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Update to `project-zot/helm-charts` version `0.1.58`.
-  - Update Default Zot container image tag to version [v2.1.0](https://github.com/project-zot/zot/releases/tag/v2.1.0)
+  - Update Default Zot container image tag to version
+    [v2.1.0](https://github.com/project-zot/zot/releases/tag/v2.1.0)
 
 ## [1.0.0] - 2024-06-17
 
 ### Added
 
-- Added support for setting `.spec.template.spec.priorityClassName` for the Zot deployment via Helm value `.priorityClassName`.
-  Defaults to empty string, meaning a priority class does not get set by default.
+- Added support for setting `.spec.template.spec.priorityClassName` for the Zot deployment via Helm value
+  `.priorityClassName`. Defaults to empty string, meaning a priority class does not get set by default.
 - Added setting to VPA to control max allowed CPU and memory. Defaults to `750m` and `2048Mi`.
 
 ### Changed
@@ -73,7 +80,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed default service type to `ClusterIP`.
 - Changed default node port to `32767` and it is added to the service only when service type is `NodePort`.
 - Enabled `PVC` creation by default.
-- Changed default resource requests to `300m` CPU and `1024Mi` memory, limits to `500m` CPU and `1536Mi` memory.
+- Changed default resource requests to `300m` CPU and `1024Mi` memory, limits to `500m` CPU and `1536Mi`
+  memory.
 
 ## [0.3.1] - 2024-04-08
 
