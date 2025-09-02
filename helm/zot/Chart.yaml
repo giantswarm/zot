@@ -3,7 +3,7 @@ appVersion: v2.1.7
 description: A Helm chart for Kubernetes
 name: zot
 type: application
-version: 0.1.79
+version: 2.3.2
 keywords:
   - kubernetes-zot-registry
   - oci-registry
