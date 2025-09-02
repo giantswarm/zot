@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade to use upstream v2.1.8 image
+
 ## [2.3.2] - 2025-09-02
 
 ### Changed
