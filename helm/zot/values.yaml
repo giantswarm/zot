@@ -62,7 +62,11 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
+<<<<<<< HEAD
   tag: "v2.1.8"
+=======
+  tag: "v2.1.9"
+>>>>>>> d8ba47128231f861d7f7e3a75e0ac9e374035cae
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -247,6 +251,7 @@ extraContainers: []
 
 # Deployment strategy type
 strategy:
+  # strategy.type should be set to Recreate if local storage is used
   type: RollingUpdate
 #  rollingUpdate:
 #    maxUnavailable: 25%
