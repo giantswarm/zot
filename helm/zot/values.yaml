@@ -62,7 +62,11 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
+<<<<<<< HEAD
   tag: "v2.1.8"
+=======
+  tag: "v2.1.10"
+>>>>>>> 851e83db972a491bd3803bf5ddc6c5b266d0d6c6
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -89,6 +93,11 @@ service:
   # Set to a static IP if a static IP is desired, only works when
   # type: ClusterIP
   clusterIP: null
+  # Traffic policy; https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies
+  internalTrafficPolicy: ""
+  externalTrafficPolicy: ""
+  # Traffic distribution preferences; https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-distribution
+  trafficDistribution: ""
 # Enabling this will publicly expose your zot server
 # Only enable this if you have security enabled on your cluster
 ingress:
@@ -247,6 +256,7 @@ extraContainers: []
 
 # Deployment strategy type
 strategy:
+  # strategy.type should be set to Recreate if local storage is used
   type: RollingUpdate
 #  rollingUpdate:
 #    maxUnavailable: 25%
