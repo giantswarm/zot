@@ -299,7 +299,7 @@
           "type": "string"
         },
         "tag": {
-          "default": "v2.1.8",
+          "default": "v2.1.10",
           "description": "Overrides the image tag whose default is the chart appVersion.",
           "required": [],
           "title": "tag",
