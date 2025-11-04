@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## Changed
+
+- Fixed: remove 'additionalProperties: false' from values.yaml schema.
+
 ## [2.3.5] - 2025-11-04
 
 ### Changed
