@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Add the team tenant observability label to pod templates
+
 ## [2.3.3] - 2025-09-02
 
 ### Changed
