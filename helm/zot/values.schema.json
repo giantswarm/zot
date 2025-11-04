@@ -673,7 +673,10 @@
           "description": "Name of the PVC to use or create if persistence is enabled, if not set the\nvalue '$CHART_RELEASE-pvc' is used",
           "required": [],
           "title": "name",
-          "type": "null"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "policyException": {
           "additionalProperties": false,
@@ -715,7 +718,6 @@
       },
       "required": [
         "create",
-        "name",
         "accessModes",
         "storage",
         "storageClassName",

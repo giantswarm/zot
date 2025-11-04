@@ -215,7 +215,10 @@ pvc:
   create: true
   # Name of the PVC to use or create if persistence is enabled, if not set the
   # value '$CHART_RELEASE-pvc' is used
-  name:
+  # @schema
+  # type: [string, null]
+  # @schema
+  name: ""
   # Volume access mode, if using more than one replica we need
   accessModes: ["ReadWriteOnce"]
   # Size of the volume requested
