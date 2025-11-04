@@ -299,7 +299,7 @@
           "type": "string"
         },
         "tag": {
-          "default": "v2.1.8",
+          "default": "v2.1.10",
           "description": "Overrides the image tag whose default is the chart appVersion.",
           "required": [],
           "title": "tag",
@@ -914,6 +914,19 @@
             "null"
           ]
         },
+        "externalTrafficPolicy": {
+          "default": "",
+          "required": [],
+          "title": "externalTrafficPolicy",
+          "type": "string"
+        },
+        "internalTrafficPolicy": {
+          "default": "",
+          "description": "Traffic policy; https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies",
+          "required": [],
+          "title": "internalTrafficPolicy",
+          "type": "string"
+        },
         "nodePort": {
           "default": 32767,
           "required": [],
@@ -926,6 +939,13 @@
           "title": "port",
           "type": "integer"
         },
+        "trafficDistribution": {
+          "default": "",
+          "description": "Traffic distribution preferences; https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-distribution",
+          "required": [],
+          "title": "trafficDistribution",
+          "type": "string"
+        },
         "type": {
           "default": "ClusterIP",
           "required": [],
@@ -937,7 +957,10 @@
         "type",
         "port",
         "nodePort",
-        "annotations"
+        "annotations",
+        "internalTrafficPolicy",
+        "externalTrafficPolicy",
+        "trafficDistribution"
       ],
       "title": "service",
       "type": "object"
@@ -1045,6 +1068,7 @@
       "properties": {
         "type": {
           "default": "RollingUpdate",
+          "description": "strategy.type should be set to Recreate if local storage is used",
           "required": [],
           "title": "type",
           "type": "string"
