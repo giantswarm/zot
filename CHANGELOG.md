@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Add the team tenant observability label to pod templates
+- switch helm schema generation to `https://github.com/dadav/helm-schema/`, add it to pre-commit config and
+  add some missing annotations
 
 ## [2.3.3] - 2025-09-02
 

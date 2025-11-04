@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=values.schema.json
 # Giant Swarm specific values and defaults
 giantswarm:
   images:
@@ -90,6 +91,9 @@ service:
   annotations: {}
   # Set to a static IP if a static IP is desired, only works when
   # type: ClusterIP
+  # @schema
+  # type: [string, null]
+  # @schema
   clusterIP: null
 # Enabling this will publicly expose your zot server
 # Only enable this if you have security enabled on your cluster
