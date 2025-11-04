@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.3.6] - 2025-11-04
+
 ## Changed
 
 - Fixed: remove 'additionalProperties: false' from values.yaml schema.
@@ -158,7 +160,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - initial release compatible with vintage and CAPI
 
-[Unreleased]: https://github.com/giantswarm/zot/compare/v2.3.5...HEAD
+[Unreleased]: https://github.com/giantswarm/zot/compare/v2.3.6...HEAD
+[2.3.6]: https://github.com/giantswarm/zot/compare/v2.3.5...v2.3.6
 [2.3.5]: https://github.com/giantswarm/zot/compare/v2.3.4...v2.3.5
 [2.3.4]: https://github.com/giantswarm/zot/compare/v2.3.3...v2.3.4
 [2.3.3]: https://github.com/giantswarm/zot/compare/v2.3.2...v2.3.3
