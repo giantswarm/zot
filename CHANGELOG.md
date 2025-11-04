@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.4.0] - 2025-11-04
+
 ## [2.3.4] - 2025-11-04
 
 ### Changed
@@ -148,7 +150,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - initial release compatible with vintage and CAPI
 
-[Unreleased]: https://github.com/giantswarm/zot/compare/v2.3.4...HEAD
+[Unreleased]: https://github.com/giantswarm/zot/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/giantswarm/zot/compare/v2.3.4...v2.4.0
 [2.3.4]: https://github.com/giantswarm/zot/compare/v2.3.3...v2.3.4
 [2.3.3]: https://github.com/giantswarm/zot/compare/v2.3.2...v2.3.3
 [2.3.2]: https://github.com/giantswarm/zot/compare/v2.3.1...v2.3.2
