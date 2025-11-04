@@ -52,6 +52,13 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Extra pod labels
+*/}}
+{{- define "zot.extraPodLabels" -}}
+observability.giantswarm.io/tenant: {{ .Values.giantswarm.observability.tenant }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "zot.serviceAccountName" -}}

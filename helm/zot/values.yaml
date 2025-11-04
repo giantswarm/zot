@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=values.schema.json
 # Giant Swarm specific values and defaults
 giantswarm:
   images:
@@ -16,6 +17,8 @@ giantswarm:
     maxAllowed:
       cpu: 750m
       memory: 2048Mi
+  observability:
+    tenant: honeybadger
 
 resources:
   requests:
@@ -88,6 +91,9 @@ service:
   annotations: {}
   # Set to a static IP if a static IP is desired, only works when
   # type: ClusterIP
+  # @schema
+  # type: [string, null]
+  # @schema
   clusterIP: null
 # Enabling this will publicly expose your zot server
 # Only enable this if you have security enabled on your cluster
@@ -209,7 +215,10 @@ pvc:
   create: true
   # Name of the PVC to use or create if persistence is enabled, if not set the
   # value '$CHART_RELEASE-pvc' is used
-  name:
+  # @schema
+  # type: [string, null]
+  # @schema
+  name: ""
   # Volume access mode, if using more than one replica we need
   accessModes: ["ReadWriteOnce"]
   # Size of the volume requested
