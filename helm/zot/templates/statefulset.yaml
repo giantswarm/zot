@@ -52,6 +52,7 @@ spec:
         {{- end }}
       labels:
         {{- include "zot.selectorLabels" . | nindent 8 }}
+        {{- include "zot.extraPodLabels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}

@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
         "configFiles": {
@@ -70,6 +70,14 @@
                         }
                     }
                 },
+                "observability": {
+                    "type": "object",
+                    "properties": {
+                        "tenant": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "verticalPodAutoscaler": {
                     "type": "object",
                     "properties": {
@@ -110,6 +118,9 @@
         "httpGet": {
             "type": "object",
             "properties": {
+                "port": {
+                    "type": "integer"
+                },
                 "scheme": {
                     "type": "string"
                 }
@@ -384,7 +395,7 @@
                     "type": "object"
                 },
                 "clusterIP": {
-                    "type": ["null","string"]
+                    "type": "null"
                 },
                 "nodePort": {
                     "type": "integer"
@@ -408,6 +419,20 @@
                 },
                 "name": {
                     "type": "string"
+                }
+            }
+        },
+        "serviceHeadless": {
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "type": "object"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "port": {
+                    "type": "integer"
                 }
             }
         },

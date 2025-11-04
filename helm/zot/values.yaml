@@ -16,6 +16,8 @@ giantswarm:
     maxAllowed:
       cpu: 750m
       memory: 2048Mi
+  observability:
+    tenant: honeybadger
 
 resources:
   requests:
