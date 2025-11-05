@@ -155,7 +155,7 @@
         "observability": {
           "properties": {
             "tenant": {
-              "default": "honeybadger",
+              "default": "giantswarm",
               "required": [],
               "title": "tenant",
               "type": "string"

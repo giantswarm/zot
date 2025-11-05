@@ -18,7 +18,7 @@ giantswarm:
       cpu: 750m
       memory: 2048Mi
   observability:
-    tenant: honeybadger
+    tenant: giantswarm
 
 resources:
   requests:
