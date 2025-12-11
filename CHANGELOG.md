@@ -178,9 +178,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 [Unreleased]: https://github.com/giantswarm/zot/compare/v2.4.0...HEAD
 
-### Changed
-
-- Migrate Chart.yaml annotations to new format as per https://docs.giantswarm.io/reference/platform-api/chart-metadata/
 [2.4.0]: https://github.com/giantswarm/zot/compare/v2.3.7...v2.4.0
 [2.3.7]: https://github.com/giantswarm/zot/compare/v2.3.6...v2.3.7
 [2.3.6]: https://github.com/giantswarm/zot/compare/v2.3.5...v2.3.6
