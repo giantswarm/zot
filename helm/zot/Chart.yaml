@@ -5,14 +5,12 @@ name: zot
 type: application
 version: 2.4.0
 keywords:
-  - kubernetes-zot-registry
-  - oci-registry
+- kubernetes-zot-registry
+- oci-registry
 home: https://github.com/giantswarm/zot
 icon: https://s.giantswarm.io/app-icons/zot/1/light.svg
 annotations:
-  application.giantswarm.io/team: "honeybadger"
-  config.giantswarm.io/version: 1.x.x
-restrictions:
-  clusterSingleton: false
-  namespaceSingleton: false
+  io.giantswarm.application.restrictions.cluster-singleton: 'false'
+  io.giantswarm.application.restrictions.namespace-singleton: 'false'
+  io.giantswarm.application.team: honeybadger
 upstreamChartVersion: 0.1.91
