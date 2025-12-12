@@ -704,167 +704,6 @@
       "title": "replicaCount",
       "type": "integer"
     },
-    "route": {
-      "description": "Gateway API Route configuration for creating HTTPRoute or other route kinds",
-      "properties": {
-        "enabled": {
-          "default": false,
-          "description": "Enable Gateway API route",
-          "required": [],
-          "title": "enabled",
-          "type": "boolean"
-        },
-        "kind": {
-          "default": "HTTPRoute",
-          "description": "Set the route kind. Valid options are GRPCRoute, HTTPRoute, TCPRoute, TLSRoute, UDPRoute",
-          "required": [],
-          "title": "kind",
-          "type": "string",
-          "enum": ["GRPCRoute", "HTTPRoute", "TCPRoute", "TLSRoute", "UDPRoute"]
-        },
-        "name": {
-          "default": "",
-          "description": "Override the route name (defaults to release fullname)",
-          "required": [],
-          "title": "name",
-          "type": ["string", "null"]
-        },
-        "annotations": {
-          "description": "Annotations to add to the route",
-          "required": [],
-          "title": "annotations",
-          "type": "object"
-        },
-        "labels": {
-          "description": "Labels to add to the route",
-          "required": [],
-          "title": "labels",
-          "type": "object"
-        },
-        "hostnames": {
-          "description": "Hostnames for the route (supports templating)",
-          "items": {
-            "type": "string"
-          },
-          "required": [],
-          "title": "hostnames",
-          "type": "array"
-        },
-        "parentRefs": {
-          "description": "Parent references to Gateway resources",
-          "items": {
-            "type": "object"
-          },
-          "required": [],
-          "title": "parentRefs",
-          "type": "array"
-        },
-        "matches": {
-          "description": "Match conditions for the route",
-          "items": {
-            "type": "object"
-          },
-          "required": [],
-          "title": "matches",
-          "type": "array"
-        },
-        "filters": {
-          "description": "Filters to apply to the route",
-          "items": {
-            "type": "object"
-          },
-          "required": [],
-          "title": "filters",
-          "type": "array"
-        },
-        "additionalRules": {
-          "description": "Additional custom rules that can be added to the route",
-          "items": {
-            "type": "object"
-          },
-          "required": [],
-          "title": "additionalRules",
-          "type": "array"
-        },
-        "securityPolicy": {
-          "description": "Envoy Gateway SecurityPolicy configuration",
-          "properties": {
-            "enabled": {
-              "default": false,
-              "description": "Enable SecurityPolicy",
-              "required": [],
-              "title": "enabled",
-              "type": "boolean"
-            },
-            "annotations": {
-              "description": "Annotations to add to the SecurityPolicy",
-              "required": [],
-              "title": "annotations",
-              "type": "object"
-            },
-            "labels": {
-              "description": "Labels to add to the SecurityPolicy",
-              "required": [],
-              "title": "labels",
-              "type": "object"
-            },
-            "basicAuth": {
-              "description": "Basic authentication configuration",
-              "required": [],
-              "title": "basicAuth",
-              "type": "object"
-            },
-            "cors": {
-              "description": "CORS configuration",
-              "required": [],
-              "title": "cors",
-              "type": "object"
-            },
-            "jwt": {
-              "description": "JWT authentication configuration",
-              "required": [],
-              "title": "jwt",
-              "type": "object"
-            },
-            "oidc": {
-              "description": "OIDC configuration",
-              "required": [],
-              "title": "oidc",
-              "type": "object"
-            },
-            "extAuth": {
-              "description": "External authentication configuration",
-              "required": [],
-              "title": "extAuth",
-              "type": "object"
-            },
-            "authorization": {
-              "description": "Authorization configuration",
-              "required": [],
-              "title": "authorization",
-              "type": "object"
-            }
-          },
-          "required": ["enabled"],
-          "title": "securityPolicy",
-          "type": "object"
-        }
-      },
-      "required": [
-        "enabled",
-        "kind",
-        "annotations",
-        "labels",
-        "hostnames",
-        "parentRefs",
-        "matches",
-        "filters",
-        "additionalRules",
-        "securityPolicy"
-      ],
-      "title": "route",
-      "type": "object"
-    },
     "resources": {
       "properties": {
         "limits": {
@@ -917,6 +756,167 @@
         "limits"
       ],
       "title": "resources",
+      "type": "object"
+    },
+    "route": {
+      "description": "Gateway API Route configuration\nEnabling this will create an HTTPRoute (or other route kinds) for Gateway API\nOnly enable this if you have a Gateway API implementation installed",
+      "properties": {
+        "additionalRules": {
+          "description": "Additional custom rules that can be added to the route",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "additionalRules",
+          "type": "array"
+        },
+        "annotations": {
+          "description": "Annotations to add to the route",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "enabled": {
+          "default": false,
+          "required": [],
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "filters": {
+          "description": "Filters to apply to the route",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "filters",
+          "type": "array"
+        },
+        "hostnames": {
+          "description": "Hostnames for the route (supports templating)",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "hostnames",
+          "type": "array"
+        },
+        "kind": {
+          "default": "HTTPRoute",
+          "description": "Set the route kind\nValid options are GRPCRoute, HTTPRoute, TCPRoute, TLSRoute, UDPRoute",
+          "required": [],
+          "title": "kind",
+          "type": "string"
+        },
+        "labels": {
+          "description": "Labels to add to the route",
+          "required": [],
+          "title": "labels",
+          "type": "object"
+        },
+        "matches": {
+          "description": "- name: my-gateway\n  namespace: gateway-system\nMatch conditions for the route",
+          "items": {
+            "anyOf": [
+              {
+                "properties": {
+                  "path": {
+                    "properties": {
+                      "type": {
+                        "default": "PathPrefix",
+                        "required": [],
+                        "title": "type",
+                        "type": "string"
+                      },
+                      "value": {
+                        "default": "/",
+                        "required": [],
+                        "title": "value",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "value"
+                    ],
+                    "title": "path",
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "path"
+                ],
+                "type": "object"
+              }
+            ],
+            "required": []
+          },
+          "required": [],
+          "title": "matches",
+          "type": "array"
+        },
+        "name": {
+          "default": "",
+          "description": "Override the route name (defaults to release fullname)",
+          "required": [],
+          "title": "name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "parentRefs": {
+          "description": "- \"{{ .Release.Name }}.example.com\"\nParent references to Gateway resources",
+          "items": {
+            "required": []
+          },
+          "required": [],
+          "title": "parentRefs",
+          "type": "array"
+        },
+        "securityPolicy": {
+          "description": "Envoy Gateway SecurityPolicy configuration",
+          "properties": {
+            "annotations": {
+              "description": "Annotations to add to the SecurityPolicy",
+              "required": [],
+              "title": "annotations",
+              "type": "object"
+            },
+            "enabled": {
+              "default": false,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "labels": {
+              "description": "Labels to add to the SecurityPolicy",
+              "required": [],
+              "title": "labels",
+              "type": "object"
+            }
+          },
+          "required": [
+            "enabled",
+            "annotations",
+            "labels"
+          ],
+          "title": "securityPolicy",
+          "type": "object"
+        }
+      },
+      "required": [
+        "enabled",
+        "kind",
+        "annotations",
+        "labels",
+        "hostnames",
+        "parentRefs",
+        "matches",
+        "filters",
+        "additionalRules",
+        "securityPolicy"
+      ],
+      "title": "route",
       "type": "object"
     },
     "secretFiles": {
