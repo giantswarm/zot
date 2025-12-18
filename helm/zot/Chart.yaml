@@ -3,10 +3,10 @@ appVersion: v2.1.11
 description: A Helm chart for Kubernetes
 name: zot
 type: application
-version: 2.4.0
+version: 2.5.0
 keywords:
-- kubernetes-zot-registry
-- oci-registry
+  - kubernetes-zot-registry
+  - oci-registry
 home: https://github.com/giantswarm/zot
 icon: https://s.giantswarm.io/app-icons/zot/1/light.svg
 annotations:
