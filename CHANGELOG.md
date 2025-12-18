@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add Gateway API support with HTTPRoute template (also supports GRPCRoute, TCPRoute, TLSRoute, UDPRoute).
+- Add Envoy Gateway SecurityPolicy support for authentication and authorization (basicAuth, CORS, JWT, OIDC, extAuth, authorization).
+
 ### Changed
 
 - Migrate Chart.yaml annotations to new format as per https://docs.giantswarm.io/reference/platform-api/chart-metadata/
