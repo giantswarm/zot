@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: v2.1.11
+appVersion: v2.1.12
 description: A Helm chart for Kubernetes
 name: zot
 type: application
-version: 2.5.0
+version: 0.1.93
 keywords:
   - kubernetes-zot-registry
   - oci-registry
@@ -13,4 +13,4 @@ annotations:
   io.giantswarm.application.restrictions.cluster-singleton: 'false'
   io.giantswarm.application.restrictions.namespace-singleton: 'false'
   io.giantswarm.application.team: honeybadger
-upstreamChartVersion: 0.1.91
+upstreamChartVersion: 0.1.93
