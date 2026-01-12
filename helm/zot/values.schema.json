@@ -6,7 +6,6 @@
       "properties": {
         "config.json": {
           "default": "{\n  \"storage\": { \"rootDirectory\": \"/var/lib/registry\" },\n  \"http\": { \"address\": \"0.0.0.0\", \"port\": \"5000\" },\n  \"log\": { \"level\": \"debug\" }\n}",
-          "required": [],
           "title": "config.json",
           "type": "string"
         }
@@ -29,7 +28,6 @@
     },
     "dnsPolicy": {
       "default": "ClusterFirst",
-      "required": [],
       "title": "dnsPolicy",
       "type": "string"
     },
@@ -38,7 +36,6 @@
       "items": {
         "required": []
       },
-      "required": [],
       "title": "env",
       "type": "array"
     },
@@ -47,7 +44,6 @@
       "items": {
         "required": []
       },
-      "required": [],
       "title": "externalSecrets",
       "type": "array"
     },
@@ -56,7 +52,6 @@
       "items": {
         "required": []
       },
-      "required": [],
       "title": "extraArgs",
       "type": "array"
     },
@@ -65,7 +60,6 @@
       "items": {
         "required": []
       },
-      "required": [],
       "title": "extraContainers",
       "type": "array"
     },
@@ -74,7 +68,6 @@
       "items": {
         "required": []
       },
-      "required": [],
       "title": "extraVolumeMounts",
       "type": "array"
     },
@@ -83,7 +76,6 @@
       "items": {
         "required": []
       },
-      "required": [],
       "title": "extraVolumes",
       "type": "array"
     },
@@ -96,13 +88,11 @@
               "properties": {
                 "image": {
                   "default": "giantswarm/alpine",
-                  "required": [],
                   "title": "image",
                   "type": "string"
                 },
                 "tag": {
                   "default": "3.18",
-                  "required": [],
                   "title": "tag",
                   "type": "string"
                 }
@@ -116,7 +106,6 @@
             },
             "registry": {
               "default": "gsoci.azurecr.io",
-              "required": [],
               "title": "registry",
               "type": "string"
             },
@@ -124,14 +113,12 @@
               "properties": {
                 "image": {
                   "default": "giantswarm/zot-linux-amd64",
-                  "required": [],
                   "title": "image",
                   "type": "string"
                 },
                 "tag": {
                   "default": "",
                   "description": "defaults to appVersion in chart.yaml",
-                  "required": [],
                   "title": "tag",
                   "type": "string"
                 }
@@ -156,7 +143,6 @@
           "properties": {
             "tenant": {
               "default": "giantswarm",
-              "required": [],
               "title": "tenant",
               "type": "string"
             }
@@ -171,14 +157,12 @@
           "properties": {
             "enabled": {
               "default": true,
-              "required": [],
               "title": "enabled",
               "type": "boolean"
             },
             "force": {
               "default": false,
               "description": "Enables bypassing \"autoscaling.k8s.io/v1\" check; use with care",
-              "required": [],
               "title": "force",
               "type": "boolean"
             },
@@ -186,13 +170,11 @@
               "properties": {
                 "cpu": {
                   "default": "750m",
-                  "required": [],
                   "title": "cpu",
                   "type": "string"
                 },
                 "memory": {
                   "default": "2048Mi",
-                  "required": [],
                   "title": "memory",
                   "type": "string"
                 }
@@ -228,7 +210,6 @@
           "properties": {
             "enforced": {
               "default": false,
-              "required": [],
               "title": "enforced",
               "type": "boolean"
             }
@@ -251,13 +232,11 @@
       "properties": {
         "port": {
           "default": 5000,
-          "required": [],
           "title": "port",
           "type": "integer"
         },
         "scheme": {
           "default": "HTTP",
-          "required": [],
           "title": "scheme",
           "type": "string"
         }
@@ -273,20 +252,17 @@
       "properties": {
         "pullPolicy": {
           "default": "IfNotPresent",
-          "required": [],
           "title": "pullPolicy",
           "type": "string"
         },
         "repository": {
           "default": "gsoci.azurecr.io/giantswarm/zot-linux-amd64",
-          "required": [],
           "title": "repository",
           "type": "string"
         },
         "tag": {
           "default": "v2.1.11",
           "description": "Overrides the image tag whose default is the chart appVersion.",
-          "required": [],
           "title": "tag",
           "type": "string"
         }
@@ -310,13 +286,11 @@
         "className": {
           "default": "nginx",
           "description": "kubernetes.io/ingress.class: nginx\nkubernetes.io/tls-acme: \"true\"\nIf using nginx, disable body limits and increase read and write timeouts\nnginx.ingress.kubernetes.io/proxy-body-size: \"0\"\nnginx.ingress.kubernetes.io/proxy-read-timeout: \"600\"\nnginx.ingress.kubernetes.io/proxy-send-timeout: \"600\"",
-          "required": [],
           "title": "className",
           "type": "string"
         },
         "enabled": {
           "default": false,
-          "required": [],
           "title": "enabled",
           "type": "boolean"
         },
@@ -327,7 +301,6 @@
                 "properties": {
                   "host": {
                     "default": "chart-example.local",
-                    "required": [],
                     "title": "host",
                     "type": "string"
                   },
@@ -338,7 +311,6 @@
                           "properties": {
                             "path": {
                               "default": "/",
-                              "required": [],
                               "title": "path",
                               "type": "string"
                             }
@@ -351,7 +323,6 @@
                       ],
                       "required": []
                     },
-                    "required": [],
                     "title": "paths",
                     "type": "array"
                   }
@@ -365,13 +336,11 @@
             ],
             "required": []
           },
-          "required": [],
           "title": "hosts",
           "type": "array"
         },
         "pathtype": {
           "default": "ImplementationSpecific",
-          "required": [],
           "title": "pathtype",
           "type": "string"
         },
@@ -379,7 +348,6 @@
           "items": {
             "required": []
           },
-          "required": [],
           "title": "tls",
           "type": "array"
         }
@@ -401,7 +369,6 @@
         "enabled": {
           "default": false,
           "description": "Start a prometheus exporter",
-          "required": [],
           "title": "enabled",
           "type": "boolean"
         },
@@ -423,28 +390,24 @@
             "enabled": {
               "default": false,
               "description": "Start a ServiceMonitor for Prometheus Operator",
-              "required": [],
               "title": "enabled",
               "type": "boolean"
             },
             "honorLabels": {
               "default": false,
               "description": "Let prometheus add an exported_ prefix to conflicting labels",
-              "required": [],
               "title": "honorLabels",
               "type": "boolean"
             },
             "interval": {
               "default": "30s",
               "description": "Specify the interval at which metrics should be scraped",
-              "required": [],
               "title": "interval",
               "type": "string"
             },
             "jobLabel": {
               "default": "",
               "description": "Selects the label from the associated Kubernetes `Service` object which will be used as the `job` label for all metrics.",
-              "required": [],
               "title": "jobLabel",
               "type": "string"
             },
@@ -453,14 +416,12 @@
               "items": {
                 "required": []
               },
-              "required": [],
               "title": "metricRelabelings",
               "type": "array"
             },
             "path": {
               "default": "/metrics",
               "description": "Namespace where you want to install ServiceMonitors",
-              "required": [],
               "title": "path",
               "type": "string"
             },
@@ -469,21 +430,18 @@
               "items": {
                 "required": []
               },
-              "required": [],
               "title": "relabelings",
               "type": "array"
             },
             "scheme": {
               "default": "",
               "description": "HTTP scheme to use for scraping. If empty, Prometheus uses the default value `http`.",
-              "required": [],
               "title": "scheme",
               "type": "string"
             },
             "scrapeTimeout": {
               "default": "25s",
               "description": "Timeout if metrics can't be retrieved in given time interval",
-              "required": [],
               "title": "scrapeTimeout",
               "type": "string"
             }
@@ -515,28 +473,24 @@
     "mountConfig": {
       "default": true,
       "description": "If mountConfig is true the configMap named $CHART_RELEASE-config is mounted\non the pod's '/etc/zot' directory",
-      "required": [],
       "title": "mountConfig",
       "type": "boolean"
     },
     "mountSecret": {
       "default": false,
       "description": "If mountSecret is true, the Secret named $CHART_RELEASE-secret is mounted on\nthe pod's '/secret' directory (it is used to keep files with passwords, like\na `htpasswd` file)",
-      "required": [],
       "title": "mountSecret",
       "type": "boolean"
     },
     "namespace": {
       "default": "",
       "description": "Defaults to the release namespace if not specified",
-      "required": [],
       "title": "namespace",
       "type": "string"
     },
     "persistence": {
       "default": true,
       "description": "If persistence is 'true' the service uses a persistentVolumeClaim to mount a\nvolume for zot on '/var/lib/registry'; by default the pvc used is named\n'$CHART_RELEASE-pvc', but the name can be changed below",
-      "required": [],
       "title": "persistence",
       "type": "boolean"
     },
@@ -554,31 +508,26 @@
       "properties": {
         "fsGroup": {
           "default": 1000,
-          "required": [],
           "title": "fsGroup",
           "type": "integer"
         },
         "fsGroupChangePolicy": {
           "default": "OnRootMismatch",
-          "required": [],
           "title": "fsGroupChangePolicy",
           "type": "string"
         },
         "runAsGroup": {
           "default": 1000,
-          "required": [],
           "title": "runAsGroup",
           "type": "integer"
         },
         "runAsNonRoot": {
           "default": true,
-          "required": [],
           "title": "runAsNonRoot",
           "type": "boolean"
         },
         "runAsUser": {
           "default": 1000,
-          "required": [],
           "title": "runAsUser",
           "type": "integer"
         },
@@ -586,7 +535,6 @@
           "properties": {
             "type": {
               "default": "RuntimeDefault",
-              "required": [],
               "title": "type",
               "type": "string"
             }
@@ -611,7 +559,6 @@
     },
     "priorityClassName": {
       "default": "",
-      "required": [],
       "title": "priorityClassName",
       "type": "string"
     },
@@ -623,20 +570,17 @@
           "items": {
             "anyOf": [
               {
-                "required": [],
                 "type": "string"
               }
             ],
             "required": []
           },
-          "required": [],
           "title": "accessModes",
           "type": "array"
         },
         "create": {
           "default": true,
           "description": "Make the chart create the PVC, this option is used with storageClasses that\ncan create volumes dynamically, if that is not the case is better to do it\nmanually and set create to false",
-          "required": [],
           "title": "create",
           "type": "boolean"
         },
@@ -654,13 +598,11 @@
           "properties": {
             "enforce": {
               "default": false,
-              "required": [],
               "title": "enforce",
               "type": "boolean"
             },
             "namespace": {
               "default": "policy-exceptions",
-              "required": [],
               "title": "namespace",
               "type": "string"
             }
@@ -675,14 +617,12 @@
         "storage": {
           "default": "8Gi",
           "description": "Size of the volume requested",
-          "required": [],
           "title": "storage",
           "type": "string"
         },
         "storageClassName": {
           "default": "",
           "description": "Name of the storage class to use if it is different from the default one",
-          "required": [],
           "title": "storageClassName",
           "type": "string"
         }
@@ -700,7 +640,6 @@
     "replicaCount": {
       "default": 1,
       "description": "Default values for zot.\nThis is a YAML-formatted file.\nDeclare variables to be passed into your templates.",
-      "required": [],
       "title": "replicaCount",
       "type": "integer"
     },
@@ -710,13 +649,11 @@
           "properties": {
             "cpu": {
               "default": "500m",
-              "required": [],
               "title": "cpu",
               "type": "string"
             },
             "memory": {
               "default": "1536Mi",
-              "required": [],
               "title": "memory",
               "type": "string"
             }
@@ -732,13 +669,11 @@
           "properties": {
             "cpu": {
               "default": "300m",
-              "required": [],
               "title": "cpu",
               "type": "string"
             },
             "memory": {
               "default": "1024Mi",
-              "required": [],
               "title": "memory",
               "type": "string"
             }
@@ -766,7 +701,6 @@
           "items": {
             "required": []
           },
-          "required": [],
           "title": "additionalRules",
           "type": "array"
         },
@@ -787,7 +721,6 @@
             },
             "enabled": {
               "default": false,
-              "required": [],
               "title": "enabled",
               "type": "boolean"
             },
@@ -808,7 +741,6 @@
         },
         "enabled": {
           "default": false,
-          "required": [],
           "title": "enabled",
           "type": "boolean"
         },
@@ -817,7 +749,6 @@
           "items": {
             "required": []
           },
-          "required": [],
           "title": "filters",
           "type": "array"
         },
@@ -826,14 +757,12 @@
           "items": {
             "required": []
           },
-          "required": [],
           "title": "hostnames",
           "type": "array"
         },
         "kind": {
           "default": "HTTPRoute",
           "description": "Set the route kind\nValid options are GRPCRoute, HTTPRoute, TCPRoute, TLSRoute, UDPRoute",
-          "required": [],
           "title": "kind",
           "type": "string"
         },
@@ -853,13 +782,11 @@
                     "properties": {
                       "type": {
                         "default": "PathPrefix",
-                        "required": [],
                         "title": "type",
                         "type": "string"
                       },
                       "value": {
                         "default": "/",
-                        "required": [],
                         "title": "value",
                         "type": "string"
                       }
@@ -880,7 +807,6 @@
             ],
             "required": []
           },
-          "required": [],
           "title": "matches",
           "type": "array"
         },
@@ -899,7 +825,6 @@
           "items": {
             "required": []
           },
-          "required": [],
           "title": "parentRefs",
           "type": "array"
         },
@@ -914,7 +839,6 @@
             },
             "enabled": {
               "default": false,
-              "required": [],
               "title": "enabled",
               "type": "boolean"
             },
@@ -956,7 +880,6 @@
         "htpasswd": {
           "default": "admin:$2y$05$vmiurPmJvHylk78HHFWuruFFVePlit9rZWGA/FbZfTEmNRneGJtha\nuser:$2y$05$L86zqQDfH5y445dcMlwu6uHv.oXFgT6AiJCwpv3ehr7idc0rI3S2G",
           "description": "Example htpasswd with 'admin:admin' \u0026 'user:user' user:pass pairs",
-          "required": [],
           "title": "htpasswd",
           "type": "string"
         }
@@ -971,7 +894,6 @@
       "properties": {
         "allowPrivilegeEscalation": {
           "default": false,
-          "required": [],
           "title": "allowPrivilegeEscalation",
           "type": "boolean"
         },
@@ -981,13 +903,11 @@
               "items": {
                 "anyOf": [
                   {
-                    "required": [],
                     "type": "string"
                   }
                 ],
                 "required": []
               },
-              "required": [],
               "title": "drop",
               "type": "array"
             }
@@ -1000,25 +920,21 @@
         },
         "readOnlyRootFilesystem": {
           "default": true,
-          "required": [],
           "title": "readOnlyRootFilesystem",
           "type": "boolean"
         },
         "runAsGroup": {
           "default": 1000,
-          "required": [],
           "title": "runAsGroup",
           "type": "integer"
         },
         "runAsNonRoot": {
           "default": true,
-          "required": [],
           "title": "runAsNonRoot",
           "type": "boolean"
         },
         "runAsUser": {
           "default": 1000,
-          "required": [],
           "title": "runAsUser",
           "type": "integer"
         },
@@ -1026,7 +942,6 @@
           "properties": {
             "type": {
               "default": "RuntimeDefault",
-              "required": [],
               "title": "type",
               "type": "string"
             }
@@ -1070,39 +985,33 @@
         },
         "externalTrafficPolicy": {
           "default": "",
-          "required": [],
           "title": "externalTrafficPolicy",
           "type": "string"
         },
         "internalTrafficPolicy": {
           "default": "",
           "description": "Traffic policy; https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies",
-          "required": [],
           "title": "internalTrafficPolicy",
           "type": "string"
         },
         "nodePort": {
           "default": 32767,
-          "required": [],
           "title": "nodePort",
           "type": "integer"
         },
         "port": {
           "default": 5000,
-          "required": [],
           "title": "port",
           "type": "integer"
         },
         "trafficDistribution": {
           "default": "",
           "description": "Traffic distribution preferences; https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-distribution",
-          "required": [],
           "title": "trafficDistribution",
           "type": "string"
         },
         "type": {
           "default": "ClusterIP",
-          "required": [],
           "title": "type",
           "type": "string"
         }
@@ -1130,14 +1039,12 @@
         "create": {
           "default": true,
           "description": "Specifies whether a service account should be created",
-          "required": [],
           "title": "create",
           "type": "boolean"
         },
         "name": {
           "default": "",
           "description": "The name of the service account to use.\nIf not set and create is true, a name is generated using the fullname template",
-          "required": [],
           "title": "name",
           "type": "string"
         }
@@ -1161,14 +1068,12 @@
         "enabled": {
           "default": false,
           "description": "Enable headless service, only for statefulset",
-          "required": [],
           "title": "enabled",
           "type": "boolean"
         },
         "port": {
           "default": 5000,
           "description": "Headless service port",
-          "required": [],
           "title": "port",
           "type": "integer"
         }
@@ -1186,19 +1091,16 @@
       "properties": {
         "failureThreshold": {
           "default": 3,
-          "required": [],
           "title": "failureThreshold",
           "type": "integer"
         },
         "initialDelaySeconds": {
           "default": 5,
-          "required": [],
           "title": "initialDelaySeconds",
           "type": "integer"
         },
         "periodSeconds": {
           "default": 10,
-          "required": [],
           "title": "periodSeconds",
           "type": "integer"
         }
@@ -1217,7 +1119,6 @@
         "type": {
           "default": "RollingUpdate",
           "description": "strategy.type should be set to Recreate if local storage is used",
-          "required": [],
           "title": "type",
           "type": "string"
         }
@@ -1234,13 +1135,11 @@
           "properties": {
             "cpu": {
               "default": "100m",
-              "required": [],
               "title": "cpu",
               "type": "string"
             },
             "memory": {
               "default": "64Mi",
-              "required": [],
               "title": "memory",
               "type": "string"
             }
@@ -1256,13 +1155,11 @@
           "properties": {
             "cpu": {
               "default": "100m",
-              "required": [],
               "title": "cpu",
               "type": "string"
             },
             "memory": {
               "default": "64Mi",
-              "required": [],
               "title": "memory",
               "type": "string"
             }
