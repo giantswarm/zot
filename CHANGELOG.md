@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-01-12
+
 ### Added
 
 - Add Envoy Gateway BackendTrafficPolicy to support custom buffer size.
@@ -186,7 +188,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - initial release compatible with vintage and CAPI
 
-[Unreleased]: https://github.com/giantswarm/zot/compare/v2.5.0...HEAD
+[Unreleased]: https://github.com/giantswarm/zot/compare/v2.6.0...HEAD
+[2.6.0]: https://github.com/giantswarm/zot/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/giantswarm/zot/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/giantswarm/zot/compare/v2.3.7...v2.4.0
 [2.3.7]: https://github.com/giantswarm/zot/compare/v2.3.6...v2.3.7
