@@ -776,6 +776,36 @@
           "title": "annotations",
           "type": "object"
         },
+        "backendTrafficPolicy": {
+          "description": "Envoy Gateway BackendTrafficPolicy configuration",
+          "properties": {
+            "annotations": {
+              "description": "Annotations to add to the BackendTrafficPolicy",
+              "required": [],
+              "title": "annotations",
+              "type": "object"
+            },
+            "enabled": {
+              "default": false,
+              "required": [],
+              "title": "enabled",
+              "type": "boolean"
+            },
+            "labels": {
+              "description": "Labels to add to the BackendTrafficPolicy",
+              "required": [],
+              "title": "labels",
+              "type": "object"
+            }
+          },
+          "required": [
+            "enabled",
+            "annotations",
+            "labels"
+          ],
+          "title": "backendTrafficPolicy",
+          "type": "object"
+        },
         "enabled": {
           "default": false,
           "required": [],
@@ -914,6 +944,7 @@
         "matches",
         "filters",
         "additionalRules",
+        "backendTrafficPolicy",
         "securityPolicy"
       ],
       "title": "route",
