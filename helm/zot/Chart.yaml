@@ -9,7 +9,8 @@ keywords:
 home: https://github.com/giantswarm/zot
 icon: https://s.giantswarm.io/app-icons/zot/2/light.svg
 annotations:
+  io.giantswarm.application.audience: all
   io.giantswarm.application.restrictions.cluster-singleton: 'false'
   io.giantswarm.application.restrictions.namespace-singleton: 'false'
   io.giantswarm.application.team: honeybadger
-  io.giantswarm.application.audience: all
+  io.giantswarm.application.upstream-chart-version: 0.1.91
