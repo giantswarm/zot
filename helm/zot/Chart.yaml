@@ -1,16 +1,16 @@
 apiVersion: v2
 appVersion: v2.1.13
-description: A Helm chart for Kubernetes
+description: OCI-native container image registry that can be used as a cache
 name: zot
 type: application
 version: 2.6.1
 keywords:
-  - kubernetes-zot-registry
   - oci-registry
 home: https://github.com/giantswarm/zot
-icon: https://s.giantswarm.io/app-icons/zot/1/light.svg
+icon: https://s.giantswarm.io/app-icons/zot/2/light.svg
 annotations:
+  io.giantswarm.application.audience: all
   io.giantswarm.application.restrictions.cluster-singleton: 'false'
   io.giantswarm.application.restrictions.namespace-singleton: 'false'
   io.giantswarm.application.team: honeybadger
-upstreamChartVersion: 0.1.95
+  io.giantswarm.application.upstream-chart-version: 0.1.95

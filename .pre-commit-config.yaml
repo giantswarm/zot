@@ -9,7 +9,7 @@ repos:
       - id: detect-private-key
       - id: mixed-line-ending
   - repo: https://github.com/dadav/helm-schema
-    rev: 0.18.1
+    rev: 0.20.0-1
     hooks:
       - id: helm-schema
         # for all available options: helm-schema -h

@@ -155,6 +155,16 @@ route:
   filters: []
   # -- Additional custom rules that can be added to the route
   additionalRules: []
+  # -- Envoy Gateway BackendTrafficPolicy configuration
+  backendTrafficPolicy:
+    enabled: false
+    # -- Annotations to add to the BackendTrafficPolicy
+    annotations: {}
+    # -- Labels to add to the BackendTrafficPolicy
+    labels: {}
+    # -- Connection configuration
+    # connection:
+    #   bufferLimit: 1Gi
   # -- Envoy Gateway SecurityPolicy configuration
   securityPolicy:
     enabled: false
