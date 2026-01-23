@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: v2.1.11
+appVersion: v2.1.13
 description: OCI-native container image registry that can be used as a cache
 name: zot
 type: application
@@ -13,4 +13,4 @@ annotations:
   io.giantswarm.application.restrictions.cluster-singleton: 'false'
   io.giantswarm.application.restrictions.namespace-singleton: 'false'
   io.giantswarm.application.team: honeybadger
-  io.giantswarm.application.upstream-chart-version: 0.1.91
+  io.giantswarm.application.upstream-chart-version: 0.1.95
