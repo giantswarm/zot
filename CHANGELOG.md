@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [2.6.2] - 2026-01-23
 
+### Changed
+
+- Update to upstream Helm Chart `v0.1.95` and Zot `v2.11.13`.
+
 ## [2.6.1] - 2026-01-22
 
 ### Changed
