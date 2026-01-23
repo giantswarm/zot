@@ -3,7 +3,7 @@ appVersion: v2.1.11
 description: OCI-native container image registry that can be used as a cache
 name: zot
 type: application
-version: 2.6.1
+version: 2.6.2
 keywords:
   - oci-registry
 home: https://github.com/giantswarm/zot
