@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: v2.1.13
+appVersion: v2.1.14
 description: OCI-native container image registry that can be used as a cache
 name: zot
 type: application
-version: 2.6.2
+version: 0.1.97
 keywords:
   - oci-registry
 home: https://github.com/giantswarm/zot
@@ -14,3 +14,4 @@ annotations:
   io.giantswarm.application.restrictions.namespace-singleton: 'false'
   io.giantswarm.application.team: honeybadger
   io.giantswarm.application.upstream-chart-version: 0.1.95
+upstreamChartVersion: 0.1.97
