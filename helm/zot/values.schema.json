@@ -2,19 +2,10 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "properties": {
     "configFiles": {
+      "additionalProperties": true,
       "description": "If mountConfig is true the chart creates the '$CHART_RELEASE-config', if it\ndoes not exist the user is in charge of managing it (as this file includes a\nsample file you have to add it empty to handle it externally).",
-      "properties": {
-        "config.json": {
-          "default": "{\n  \"storage\": { \"rootDirectory\": \"/var/lib/registry\" },\n  \"http\": { \"address\": \"0.0.0.0\", \"port\": \"5000\" },\n  \"log\": { \"level\": \"debug\" }\n}",
-          "title": "config.json",
-          "type": "string"
-        }
-      },
-      "required": [
-        "config.json"
-      ],
-      "title": "configFiles",
-      "type": "object"
+      "required": [],
+      "title": "configFiles"
     },
     "deploymentAnnotations": {
       "required": [],
@@ -1197,7 +1188,6 @@
     "httpGet",
     "startupProbe",
     "mountConfig",
-    "configFiles",
     "externalSecrets",
     "mountSecret",
     "secretFiles",
