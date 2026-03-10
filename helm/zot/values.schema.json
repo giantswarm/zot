@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "additionalProperties": false,
   "properties": {
     "configFiles": {
       "additionalProperties": true,
@@ -9,13 +8,11 @@
       "title": "configFiles"
     },
     "deploymentAnnotations": {
-      "additionalProperties": false,
       "required": [],
       "title": "deploymentAnnotations",
       "type": "object"
     },
     "dnsConfig": {
-      "additionalProperties": false,
       "required": [],
       "title": "dnsConfig",
       "type": "object"
@@ -74,14 +71,11 @@
       "type": "array"
     },
     "giantswarm": {
-      "additionalProperties": false,
       "description": "yaml-language-server: $schema=values.schema.json\nGiant Swarm specific values and defaults",
       "properties": {
         "images": {
-          "additionalProperties": false,
           "properties": {
             "alpine": {
-              "additionalProperties": false,
               "properties": {
                 "image": {
                   "default": "giantswarm/alpine",
@@ -107,7 +101,6 @@
               "type": "string"
             },
             "zot": {
-              "additionalProperties": false,
               "properties": {
                 "image": {
                   "default": "giantswarm/zot-linux-amd64",
@@ -138,7 +131,6 @@
           "type": "object"
         },
         "observability": {
-          "additionalProperties": false,
           "properties": {
             "tenant": {
               "default": "giantswarm",
@@ -153,7 +145,6 @@
           "type": "object"
         },
         "verticalPodAutoscaler": {
-          "additionalProperties": false,
           "properties": {
             "enabled": {
               "default": true,
@@ -167,7 +158,6 @@
               "type": "boolean"
             },
             "maxAllowed": {
-              "additionalProperties": false,
               "properties": {
                 "cpu": {
                   "default": "750m",
@@ -206,10 +196,8 @@
       "type": "object"
     },
     "global": {
-      "additionalProperties": false,
       "properties": {
         "podSecurityStandards": {
-          "additionalProperties": false,
           "properties": {
             "enforced": {
               "default": false,
@@ -231,7 +219,6 @@
       "type": "object"
     },
     "httpGet": {
-      "additionalProperties": false,
       "description": "By default, Kubernetes HTTP probes use HTTP 'scheme'. So if TLS is enabled\nin configuration, to prevent failures, the scheme must be set to 'HTTPS'.",
       "properties": {
         "port": {
@@ -253,7 +240,6 @@
       "type": "object"
     },
     "image": {
-      "additionalProperties": false,
       "properties": {
         "pullPolicy": {
           "default": "IfNotPresent",
@@ -281,11 +267,9 @@
       "type": "object"
     },
     "ingress": {
-      "additionalProperties": false,
       "description": "Enabling this will publicly expose your zot server\nOnly enable this if you have security enabled on your cluster",
       "properties": {
         "annotations": {
-          "additionalProperties": false,
           "required": [],
           "title": "annotations",
           "type": "object"
@@ -305,7 +289,6 @@
           "items": {
             "anyOf": [
               {
-                "additionalProperties": false,
                 "properties": {
                   "host": {
                     "default": "chart-example.local",
@@ -316,7 +299,6 @@
                     "items": {
                       "anyOf": [
                         {
-                          "additionalProperties": false,
                           "properties": {
                             "path": {
                               "default": "/",
@@ -373,7 +355,6 @@
       "type": "object"
     },
     "metrics": {
-      "additionalProperties": false,
       "description": "Metrics configuration\nNOTE: need enable metric extension in config.json",
       "properties": {
         "enabled": {
@@ -383,18 +364,15 @@
           "type": "boolean"
         },
         "serviceMonitor": {
-          "additionalProperties": false,
           "description": "Prometheus Operator ServiceMonitor configuration",
           "properties": {
             "additionalLabels": {
-              "additionalProperties": false,
               "description": "Additional labels",
               "required": [],
               "title": "additionalLabels",
               "type": "object"
             },
             "basicAuth": {
-              "additionalProperties": false,
               "description": "- sourceLabels: [__meta_kubernetes_pod_node_name]\n  separator: ;\n  regex: ^(.*)$\n  targetLabel: nodename\n  replacement: $1\n  action: replace",
               "required": [],
               "title": "basicAuth",
@@ -508,19 +486,16 @@
       "type": "boolean"
     },
     "podAnnotations": {
-      "additionalProperties": false,
       "required": [],
       "title": "podAnnotations",
       "type": "object"
     },
     "podLabels": {
-      "additionalProperties": false,
       "required": [],
       "title": "podLabels",
       "type": "object"
     },
     "podSecurityContext": {
-      "additionalProperties": false,
       "properties": {
         "fsGroup": {
           "default": 1000,
@@ -548,7 +523,6 @@
           "type": "integer"
         },
         "seccompProfile": {
-          "additionalProperties": false,
           "properties": {
             "type": {
               "default": "RuntimeDefault",
@@ -580,7 +554,6 @@
       "type": "string"
     },
     "pvc": {
-      "additionalProperties": false,
       "description": "PVC data, only used if persistence is 'true'",
       "properties": {
         "accessModes": {
@@ -613,7 +586,6 @@
           ]
         },
         "policyException": {
-          "additionalProperties": false,
           "properties": {
             "enforce": {
               "default": false,
@@ -663,10 +635,8 @@
       "type": "integer"
     },
     "resources": {
-      "additionalProperties": false,
       "properties": {
         "limits": {
-          "additionalProperties": false,
           "properties": {
             "cpu": {
               "default": "500m",
@@ -687,7 +657,6 @@
           "type": "object"
         },
         "requests": {
-          "additionalProperties": false,
           "properties": {
             "cpu": {
               "default": "300m",
@@ -716,7 +685,6 @@
       "type": "object"
     },
     "route": {
-      "additionalProperties": false,
       "description": "Gateway API Route configuration\nEnabling this will create an HTTPRoute (or other route kinds) for Gateway API\nOnly enable this if you have a Gateway API implementation installed",
       "properties": {
         "additionalRules": {
@@ -728,18 +696,15 @@
           "type": "array"
         },
         "annotations": {
-          "additionalProperties": false,
           "description": "Annotations to add to the route",
           "required": [],
           "title": "annotations",
           "type": "object"
         },
         "backendTrafficPolicy": {
-          "additionalProperties": false,
           "description": "Envoy Gateway BackendTrafficPolicy configuration",
           "properties": {
             "annotations": {
-              "additionalProperties": false,
               "description": "Annotations to add to the BackendTrafficPolicy",
               "required": [],
               "title": "annotations",
@@ -751,7 +716,6 @@
               "type": "boolean"
             },
             "labels": {
-              "additionalProperties": false,
               "description": "Labels to add to the BackendTrafficPolicy",
               "required": [],
               "title": "labels",
@@ -794,7 +758,6 @@
           "type": "string"
         },
         "labels": {
-          "additionalProperties": false,
           "description": "Labels to add to the route",
           "required": [],
           "title": "labels",
@@ -805,10 +768,8 @@
           "items": {
             "anyOf": [
               {
-                "additionalProperties": false,
                 "properties": {
                   "path": {
-                    "additionalProperties": false,
                     "properties": {
                       "type": {
                         "default": "PathPrefix",
@@ -859,11 +820,9 @@
           "type": "array"
         },
         "securityPolicy": {
-          "additionalProperties": false,
           "description": "Envoy Gateway SecurityPolicy configuration",
           "properties": {
             "annotations": {
-              "additionalProperties": false,
               "description": "Annotations to add to the SecurityPolicy",
               "required": [],
               "title": "annotations",
@@ -875,7 +834,6 @@
               "type": "boolean"
             },
             "labels": {
-              "additionalProperties": false,
               "description": "Labels to add to the SecurityPolicy",
               "required": [],
               "title": "labels",
@@ -908,7 +866,6 @@
       "type": "object"
     },
     "secretFiles": {
-      "additionalProperties": false,
       "description": "If secretFiles does not exist the user is in charge of managing it, again, if\nyou want to manage it the value has to be added empty to avoid using this one",
       "properties": {
         "htpasswd": {
@@ -925,7 +882,6 @@
       "type": "object"
     },
     "securityContext": {
-      "additionalProperties": false,
       "properties": {
         "allowPrivilegeEscalation": {
           "default": false,
@@ -933,7 +889,6 @@
           "type": "boolean"
         },
         "capabilities": {
-          "additionalProperties": false,
           "properties": {
             "drop": {
               "items": {
@@ -975,7 +930,6 @@
           "type": "integer"
         },
         "seccompProfile": {
-          "additionalProperties": false,
           "properties": {
             "type": {
               "default": "RuntimeDefault",
@@ -1003,10 +957,8 @@
       "type": "object"
     },
     "service": {
-      "additionalProperties": false,
       "properties": {
         "annotations": {
-          "additionalProperties": false,
           "description": "Annotations to add to the service",
           "required": [],
           "title": "annotations",
@@ -1068,10 +1020,8 @@
       "type": "object"
     },
     "serviceAccount": {
-      "additionalProperties": false,
       "properties": {
         "annotations": {
-          "additionalProperties": false,
           "description": "Annotations to add to the service account",
           "required": [],
           "title": "annotations",
@@ -1099,10 +1049,8 @@
       "type": "object"
     },
     "serviceHeadless": {
-      "additionalProperties": false,
       "properties": {
         "annotations": {
-          "additionalProperties": false,
           "description": "Annotations to add to the headless service",
           "required": [],
           "title": "annotations",
@@ -1130,7 +1078,6 @@
       "type": "object"
     },
     "startupProbe": {
-      "additionalProperties": false,
       "description": "By default, Kubernetes considers a Pod healthy if the liveness probe returns\nsuccessfully. However, sometimes applications need additional startup time on\ntheir first initialization. By defining a startupProbe, we can allow the\napplication to take extra time for initialization without compromising fast\nresponse to deadlocks.",
       "properties": {
         "failureThreshold": {
@@ -1158,7 +1105,6 @@
       "type": "object"
     },
     "strategy": {
-      "additionalProperties": false,
       "description": "Deployment strategy type",
       "properties": {
         "type": {
@@ -1175,10 +1121,8 @@
       "type": "object"
     },
     "testPodResources": {
-      "additionalProperties": false,
       "properties": {
         "limits": {
-          "additionalProperties": false,
           "properties": {
             "cpu": {
               "default": "100m",
@@ -1199,7 +1143,6 @@
           "type": "object"
         },
         "requests": {
-          "additionalProperties": false,
           "properties": {
             "cpu": {
               "default": "100m",
