@@ -65,7 +65,7 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.1.13"
+  tag: "v2.1.16"
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -121,6 +121,7 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+<<<<<<< HEAD
 
 # Gateway API Route configuration
 # Enabling this will create an HTTPRoute (or other route kinds) for Gateway API
@@ -199,6 +200,45 @@ route:
     # authorization:
     #   defaultAction: Deny
 
+=======
+# -- HTTPRoute configuration for Gateway API (alternative to Ingress). Only enable this if you have Gateway API CRDs installed and a Gateway controller.
+httproute:
+  # -- Enable HTTPRoute resource creation instead of (or in addition to) Ingress.
+  enabled: false
+  # -- Annotations to add to the HTTPRoute resource.
+  annotations: {}
+  # -- Labels to add to the HTTPRoute resource.
+  labels: {}
+  # -- Gateway references that the HTTPRoute attaches to. At least one parentRef is required when HTTPRoute is enabled.
+  parentRefs: []
+  # Example parentRefs configuration:
+  # - name: my-gateway
+  #   namespace: gateway-system
+  #   sectionName: https  # Optional: specific listener on the gateway
+  # -- Hostnames to match for this HTTPRoute.
+  hostnames: []
+  # Example:
+  # - "zot.example.com"
+  # - "registry.example.com"
+  # -- Path matching type (PathPrefix, Exact, or RegularExpression).
+  pathType: PathPrefix
+  # -- Path to match when custom rules are not specified.
+  path: /
+  # -- Advanced routing rules (optional). If not specified, a default rule matching the path will be created.
+  # Note: Any backendRefs in custom rules will be ignored and the zot service will always be used.
+  rules: []
+  # Example rules configuration:
+  # - matches:
+  #   - path:
+  #       type: PathPrefix
+  #       value: /v2/
+  #   filters:
+  #   - type: RequestHeaderModifier
+  #     requestHeaderModifier:
+  #       add:
+  #       - name: X-Custom-Header
+  #         value: custom-value
+>>>>>>> a8608f37ccaf0877a73a25c3361d9f0e073c41eb
 # By default, Kubernetes HTTP probes use HTTP 'scheme'. So if TLS is enabled
 # in configuration, to prevent failures, the scheme must be set to 'HTTPS'.
 httpGet:
@@ -292,6 +332,7 @@ secretFiles:
 persistence: true
 # PVC data, only used if persistence is 'true'
 pvc:
+<<<<<<< HEAD
   # Make the chart create the PVC, this option is used with storageClasses that
   # can create volumes dynamically, if that is not the case is better to do it
   # manually and set create to false
@@ -302,6 +343,22 @@ pvc:
   # type: [string, null]
   # @schema
   name: ""
+=======
+  # When true, the StatefulSet uses volumeClaimTemplates to dynamically provision
+  # PVCs. Kubernetes names the resulting PVCs as:
+  #   <vctName>-<fullname>-<ordinal>
+  # where <fullname> is the StatefulSet name (typically <release>-zot).
+  # For example, with release "my-release" and default pvc.name:
+  #   my-release-pvc-my-release-zot-0
+  # When false, an existing PVC is mounted via volumes instead — set 'name' to the
+  # exact name of the pre-existing PVC. Note: all replicas will share that single
+  # PVC, so the access mode must support it (e.g. ReadWriteMany).
+  create: true
+  # When create is true, this is the volumeClaimTemplate name (the <vctName> part
+  # above). When create is false, this is the literal name of a pre-existing PVC.
+  # Defaults to '$CHART_RELEASE-pvc' if not set.
+  name: null
+>>>>>>> a8608f37ccaf0877a73a25c3361d9f0e073c41eb
   # Volume access mode, if using more than one replica we need
   accessModes: ["ReadWriteOnce"]
   # Size of the volume requested
