@@ -1,6 +1,6 @@
 # zot
 
-![Version: 0.1.95](https://img.shields.io/badge/Version-0.1.95-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.13](https://img.shields.io/badge/AppVersion-v2.1.13-informational?style=flat-square)
+![Version: 0.1.112](https://img.shields.io/badge/Version-0.1.112-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.16](https://img.shields.io/badge/AppVersion-v2.1.16-informational?style=flat-square)
 
 A zot registry helm chart for Kubernetes
 
@@ -20,9 +20,18 @@ A zot registry helm chart for Kubernetes
 | extraVolumes | list | `[]` |  |
 | httpGet.port | int | `5000` |  |
 | httpGet.scheme | string | `"HTTP"` |  |
+| httproute | object | `{"annotations":{},"enabled":false,"hostnames":[],"labels":{},"parentRefs":[],"path":"/","pathType":"PathPrefix","rules":[]}` | HTTPRoute configuration for Gateway API (alternative to Ingress). Only enable this if you have Gateway API CRDs installed and a Gateway controller. |
+| httproute.annotations | object | `{}` | Annotations to add to the HTTPRoute resource. |
+| httproute.enabled | bool | `false` | Enable HTTPRoute resource creation instead of (or in addition to) Ingress. |
+| httproute.hostnames | list | `[]` | Hostnames to match for this HTTPRoute. |
+| httproute.labels | object | `{}` | Labels to add to the HTTPRoute resource. |
+| httproute.parentRefs | list | `[]` | Gateway references that the HTTPRoute attaches to. At least one parentRef is required when HTTPRoute is enabled. |
+| httproute.path | string | `"/"` | Path to match when custom rules are not specified. |
+| httproute.pathType | string | `"PathPrefix"` | Path matching type (PathPrefix, Exact, or RegularExpression). |
+| httproute.rules | list | `[]` | Advanced routing rules (optional). If not specified, a default rule matching the path will be created. Note: Any backendRefs in custom rules will be ignored and the zot service will always be used. |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/project-zot/zot"` |  |
-| image.tag | string | `"v2.1.13"` |  |
+| image.tag | string | `"v2.1.16"` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `"nginx"` |  |
 | ingress.enabled | bool | `false` |  |
@@ -30,6 +39,17 @@ A zot registry helm chart for Kubernetes
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | ingress.pathtype | string | `"ImplementationSpecific"` |  |
 | ingress.tls | list | `[]` |  |
+| initContainers | list | `[]` |  |
+| listenerset | object | `{"annotations":{},"enabled":false,"labels":{},"listeners":[],"parentRef":{"group":"gateway.networking.k8s.io","kind":"Gateway","name":"","namespace":""}}` | ListenerSet configuration for Gateway API. Use this to manage listeners (ports/protocols/TLS) independently from the Gateway resource. The parent Gateway must allow ListenerSet attachment via allowedListeners. Requires Gateway API CRDs with ListenerSet support (gateway.networking.k8s.io/v1 ListenerSet). |
+| listenerset.annotations | object | `{}` | Annotations to add to the ListenerSet resource. You may use annotations compatible with your certificate management stack. |
+| listenerset.enabled | bool | `false` | Enable ListenerSet resource creation. |
+| listenerset.labels | object | `{}` | Labels to add to the ListenerSet resource. |
+| listenerset.listeners | list | `[]` | List of listeners to configure on the parent Gateway. At least one listener is required when ListenerSet is enabled. |
+| listenerset.parentRef | object | `{"group":"gateway.networking.k8s.io","kind":"Gateway","name":"","namespace":""}` | Parent Gateway reference that this ListenerSet attaches to. |
+| listenerset.parentRef.group | string | `"gateway.networking.k8s.io"` | Group of the parent Gateway resource. |
+| listenerset.parentRef.kind | string | `"Gateway"` | Kind of the parent resource. |
+| listenerset.parentRef.name | string | `""` | Name of the parent Gateway. Required when ListenerSet is enabled. |
+| listenerset.parentRef.namespace | string | `""` | Namespace of the parent Gateway. Defaults to the same namespace if not set. |
 | metrics.enabled | bool | `false` |  |
 | metrics.serviceMonitor.basicAuth.passwordKey | string | `"password"` |  |
 | metrics.serviceMonitor.basicAuth.secretName | string | `"basic-auth"` |  |
@@ -45,7 +65,7 @@ A zot registry helm chart for Kubernetes
 | podLabels | object | `{}` |  |
 | priorityClassName | string | `""` |  |
 | pvc.accessModes[0] | string | `"ReadWriteOnce"` |  |
-| pvc.create | bool | `false` |  |
+| pvc.create | bool | `true` |  |
 | pvc.name | string | `nil` |  |
 | pvc.storage | string | `"8Gi"` |  |
 | pvc.storageClassName | string | `nil` |  |
