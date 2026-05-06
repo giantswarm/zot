@@ -338,6 +338,9 @@ pvc:
   # When create is true, this is the volumeClaimTemplate name (the <vctName> part
   # above). When create is false, this is the literal name of a pre-existing PVC.
   # Defaults to '$CHART_RELEASE-pvc' if not set.
+  # @schema
+  # type: [string, null]
+  # @schema
   name: null
   # Volume access mode, if using more than one replica we need
   accessModes: ["ReadWriteOnce"]
