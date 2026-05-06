@@ -93,9 +93,6 @@ tests:
     asserts:
       - equal:
           path: spec.volumeClaimTemplates[0].metadata.name
-<<<<<<< HEAD
-          value: custom-pvc-pvc
-=======
           value: my-release-pvc
       - contains:
           path: spec.template.spec.containers[0].volumeMounts
@@ -156,7 +153,6 @@ tests:
           content:
             mountPath: /var/lib/registry
             name: my-release-pvc
->>>>>>> fa8efd6234de8942c435d92bf8fe5e9d8fb46d86
 
   - it: should have an headless service when enabled
     set:
