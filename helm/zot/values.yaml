@@ -121,7 +121,6 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-<<<<<<< HEAD
 
 # Gateway API Route configuration
 # Enabling this will create an HTTPRoute (or other route kinds) for Gateway API
@@ -199,49 +198,6 @@ route:
     # -- Authorization configuration
     # authorization:
     #   defaultAction: Deny
-
-=======
-# -- HTTPRoute configuration for Gateway API (alternative to Ingress). Only enable this if you have Gateway API CRDs installed and a Gateway controller.
-httproute:
-  # -- Enable HTTPRoute resource creation instead of (or in addition to) Ingress.
-  enabled: false
-  # -- Annotations to add to the HTTPRoute resource.
-  annotations: {}
-  # -- Labels to add to the HTTPRoute resource.
-  labels: {}
-  # -- Gateway references that the HTTPRoute attaches to. At least one parentRef is required when HTTPRoute is enabled.
-  parentRefs: []
-  # Example parentRefs configuration:
-  # - name: my-gateway
-  #   namespace: gateway-system
-  #   sectionName: https  # Optional: specific listener on the gateway
-  # -- Hostnames to match for this HTTPRoute.
-  hostnames: []
-  # Example:
-  # - "zot.example.com"
-  # - "registry.example.com"
-  # -- Path matching type (PathPrefix, Exact, or RegularExpression).
-  pathType: PathPrefix
-  # -- Path to match when custom rules are not specified.
-  path: /
-  # -- Advanced routing rules (optional). If not specified, a default rule matching the path will be created.
-  # Note: Any backendRefs in custom rules will be ignored and the zot service will always be used.
-  rules: []
-  # Example rules configuration:
-  # - matches:
-  #   - path:
-  #       type: PathPrefix
-  #       value: /v2/
-  #   filters:
-  #   - type: RequestHeaderModifier
-  #     requestHeaderModifier:
-  #       add:
-  #       - name: X-Custom-Header
-  #         value: custom-value
-# -- ListenerSet configuration for Gateway API. Use this to manage listeners
-# (ports/protocols/TLS) independently from the Gateway resource.
-# The parent Gateway must allow ListenerSet attachment via allowedListeners.
-# Requires Gateway API CRDs with ListenerSet support (gateway.networking.k8s.io/v1 ListenerSet).
 listenerset:
   # -- Enable ListenerSet resource creation.
   enabled: false
@@ -275,7 +231,7 @@ listenerset:
   #     certificateRefs:
   #       - kind: Secret
   #         name: zot-tls-cert
->>>>>>> fa8efd6234de8942c435d92bf8fe5e9d8fb46d86
+
 # By default, Kubernetes HTTP probes use HTTP 'scheme'. So if TLS is enabled
 # in configuration, to prevent failures, the scheme must be set to 'HTTPS'.
 httpGet:
@@ -369,18 +325,6 @@ secretFiles:
 persistence: true
 # PVC data, only used if persistence is 'true'
 pvc:
-<<<<<<< HEAD
-  # Make the chart create the PVC, this option is used with storageClasses that
-  # can create volumes dynamically, if that is not the case is better to do it
-  # manually and set create to false
-  create: true
-  # Name of the PVC to use or create if persistence is enabled, if not set the
-  # value '$CHART_RELEASE-pvc' is used
-  # @schema
-  # type: [string, null]
-  # @schema
-  name: ""
-=======
   # When true, the StatefulSet uses volumeClaimTemplates to dynamically provision
   # PVCs. Kubernetes names the resulting PVCs as:
   #   <vctName>-<fullname>-<ordinal>
@@ -395,7 +339,6 @@ pvc:
   # above). When create is false, this is the literal name of a pre-existing PVC.
   # Defaults to '$CHART_RELEASE-pvc' if not set.
   name: null
->>>>>>> fa8efd6234de8942c435d92bf8fe5e9d8fb46d86
   # Volume access mode, if using more than one replica we need
   accessModes: ["ReadWriteOnce"]
   # Size of the volume requested
