@@ -261,7 +261,7 @@
           "type": "string"
         },
         "tag": {
-          "default": "v2.1.13",
+          "default": "v2.1.16",
           "description": "Overrides the image tag whose default is the chart appVersion.",
           "title": "tag",
           "type": "string"
@@ -361,6 +361,90 @@
         "tls"
       ],
       "title": "ingress",
+      "type": "object"
+    },
+    "initContainers": {
+      "description": "Init Containers that run before the main container starts",
+      "items": {
+        "required": []
+      },
+      "title": "initContainers",
+      "type": "array"
+    },
+    "listenerset": {
+      "properties": {
+        "annotations": {
+          "description": "Annotations to add to the ListenerSet resource.\nYou may use annotations compatible with your certificate management stack.",
+          "required": [],
+          "title": "annotations",
+          "type": "object"
+        },
+        "enabled": {
+          "default": false,
+          "description": "Enable ListenerSet resource creation.",
+          "title": "enabled",
+          "type": "boolean"
+        },
+        "labels": {
+          "description": "Example annotation:\ncert-manager.io/cluster-issuer: letsencrypt-prod\nLabels to add to the ListenerSet resource.",
+          "required": [],
+          "title": "labels",
+          "type": "object"
+        },
+        "listeners": {
+          "description": "List of listeners to configure on the parent Gateway.\nAt least one listener is required when ListenerSet is enabled.",
+          "items": {
+            "required": []
+          },
+          "title": "listeners",
+          "type": "array"
+        },
+        "parentRef": {
+          "description": "Parent Gateway reference that this ListenerSet attaches to.",
+          "properties": {
+            "group": {
+              "default": "gateway.networking.k8s.io",
+              "description": "Group of the parent Gateway resource.",
+              "title": "group",
+              "type": "string"
+            },
+            "kind": {
+              "default": "Gateway",
+              "description": "Kind of the parent resource.",
+              "title": "kind",
+              "type": "string"
+            },
+            "name": {
+              "default": "",
+              "description": "Name of the parent Gateway. Required when ListenerSet is enabled.",
+              "title": "name",
+              "type": "string"
+            },
+            "namespace": {
+              "default": "",
+              "description": "Namespace of the parent Gateway. Defaults to the same namespace if not set.",
+              "title": "namespace",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "namespace",
+            "group",
+            "kind"
+          ],
+          "title": "parentRef",
+          "type": "object"
+        }
+      },
+      "required": [
+        "enabled",
+        "annotations",
+        "labels",
+        "parentRef",
+        "listeners"
+      ],
+      "title": "listenerset",
       "type": "object"
     },
     "metrics": {
@@ -580,19 +664,15 @@
         },
         "create": {
           "default": true,
-          "description": "Make the chart create the PVC, this option is used with storageClasses that\ncan create volumes dynamically, if that is not the case is better to do it\nmanually and set create to false",
+          "description": "When true, the StatefulSet uses volumeClaimTemplates to dynamically provision\nPVCs. Kubernetes names the resulting PVCs as:\n  \u003cvctName\u003e-\u003cfullname\u003e-\u003cordinal\u003e\nwhere \u003cfullname\u003e is the StatefulSet name (typically \u003crelease\u003e-zot).\nFor example, with release \"my-release\" and default pvc.name:\n  my-release-pvc-my-release-zot-0\nWhen false, an existing PVC is mounted via volumes instead — set 'name' to the\nexact name of the pre-existing PVC. Note: all replicas will share that single\nPVC, so the access mode must support it (e.g. ReadWriteMany).",
           "title": "create",
           "type": "boolean"
         },
         "name": {
-          "default": "",
-          "description": "Name of the PVC to use or create if persistence is enabled, if not set the\nvalue '$CHART_RELEASE-pvc' is used",
-          "required": [],
+          "default": "null",
+          "description": "When create is true, this is the volumeClaimTemplate name (the \u003cvctName\u003e part\nabove). When create is false, this is the literal name of a pre-existing PVC.\nDefaults to '$CHART_RELEASE-pvc' if not set.",
           "title": "name",
-          "type": [
-            "string",
-            "null"
-          ]
+          "type": "null"
         },
         "policyException": {
           "properties": {
@@ -629,6 +709,7 @@
       },
       "required": [
         "create",
+        "name",
         "accessModes",
         "storage",
         "storageClassName",
@@ -1194,6 +1275,7 @@
     "service",
     "ingress",
     "route",
+    "listenerset",
     "httpGet",
     "startupProbe",
     "mountConfig",
@@ -1206,6 +1288,7 @@
     "env",
     "extraVolumeMounts",
     "extraVolumes",
+    "initContainers",
     "extraContainers",
     "strategy",
     "extraArgs",
