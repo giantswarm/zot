@@ -65,7 +65,7 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.1.13"
+  tag: "v2.1.16"
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -198,6 +198,39 @@ route:
     # -- Authorization configuration
     # authorization:
     #   defaultAction: Deny
+listenerset:
+  # -- Enable ListenerSet resource creation.
+  enabled: false
+  # -- Annotations to add to the ListenerSet resource.
+  # You may use annotations compatible with your certificate management stack.
+  annotations: {}
+  # Example annotation:
+  # cert-manager.io/cluster-issuer: letsencrypt-prod
+  # -- Labels to add to the ListenerSet resource.
+  labels: {}
+  # -- Parent Gateway reference that this ListenerSet attaches to.
+  parentRef:
+    # -- Name of the parent Gateway. Required when ListenerSet is enabled.
+    name: ""
+    # -- Namespace of the parent Gateway. Defaults to the same namespace if not set.
+    namespace: ""
+    # -- Group of the parent Gateway resource.
+    group: "gateway.networking.k8s.io"
+    # -- Kind of the parent resource.
+    kind: "Gateway"
+  # -- List of listeners to configure on the parent Gateway.
+  # At least one listener is required when ListenerSet is enabled.
+  listeners: []
+  # Example listeners configuration:
+  # - name: https
+  #   port: 443
+  #   protocol: HTTPS
+  #   hostname: "zot.example.com"
+  #   tls:
+  #     mode: Terminate
+  #     certificateRefs:
+  #       - kind: Secret
+  #         name: zot-tls-cert
 
 # By default, Kubernetes HTTP probes use HTTP 'scheme'. So if TLS is enabled
 # in configuration, to prevent failures, the scheme must be set to 'HTTPS'.
@@ -292,16 +325,23 @@ secretFiles:
 persistence: true
 # PVC data, only used if persistence is 'true'
 pvc:
-  # Make the chart create the PVC, this option is used with storageClasses that
-  # can create volumes dynamically, if that is not the case is better to do it
-  # manually and set create to false
+  # When true, the StatefulSet uses volumeClaimTemplates to dynamically provision
+  # PVCs. Kubernetes names the resulting PVCs as:
+  #   <vctName>-<fullname>-<ordinal>
+  # where <fullname> is the StatefulSet name (typically <release>-zot).
+  # For example, with release "my-release" and default pvc.name:
+  #   my-release-pvc-my-release-zot-0
+  # When false, an existing PVC is mounted via volumes instead — set 'name' to the
+  # exact name of the pre-existing PVC. Note: all replicas will share that single
+  # PVC, so the access mode must support it (e.g. ReadWriteMany).
   create: true
-  # Name of the PVC to use or create if persistence is enabled, if not set the
-  # value '$CHART_RELEASE-pvc' is used
+  # When create is true, this is the volumeClaimTemplate name (the <vctName> part
+  # above). When create is false, this is the literal name of a pre-existing PVC.
+  # Defaults to '$CHART_RELEASE-pvc' if not set.
   # @schema
   # type: [string, null]
   # @schema
-  name: ""
+  name: null
   # Volume access mode, if using more than one replica we need
   accessModes: ["ReadWriteOnce"]
   # Size of the volume requested
@@ -330,6 +370,12 @@ extraVolumeMounts: []
 extraVolumes: []
 # - name: data
 #   emptyDir: {}
+
+# Init Containers that run before the main container starts
+initContainers: []
+# - name: init-config
+#   image: busybox
+#   command: ["sh", "-c", "echo initializing"]
 
 # Extra Containers running alongside the main container
 extraContainers: []
