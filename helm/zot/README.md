@@ -1,6 +1,6 @@
 # zot
 
-![Version: 0.1.112](https://img.shields.io/badge/Version-0.1.112-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.16](https://img.shields.io/badge/AppVersion-v2.1.16-informational?style=flat-square)
+![Version: 0.1.117](https://img.shields.io/badge/Version-0.1.117-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.17](https://img.shields.io/badge/AppVersion-v2.1.17-informational?style=flat-square)
 
 A zot registry helm chart for Kubernetes
 
@@ -8,7 +8,7 @@ A zot registry helm chart for Kubernetes
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| configFiles."config.json" | string | `"{\n  \"storage\": { \"rootDirectory\": \"/var/lib/registry\" },\n  \"http\": { \"address\": \"0.0.0.0\", \"port\": \"5000\" },\n  \"log\": { \"level\": \"debug\" }\n}"` |  |
+| configFiles."config.json" | string | `"{\n  \"storage\": { \"rootDirectory\": \"/var/lib/registry\" },\n  \"http\": {\n    \"address\": \"0.0.0.0\",\n    \"port\": \"5000\",\n    \"readTimeout\": \"60s\",\n    \"writeTimeout\": \"60s\"\n  },\n  \"log\": { \"level\": \"debug\" }\n}"` |  |
 | deploymentAnnotations | object | `{}` |  |
 | dnsConfig | object | `{}` |  |
 | dnsPolicy | string | `"ClusterFirst"` |  |
@@ -18,6 +18,7 @@ A zot registry helm chart for Kubernetes
 | extraContainers | list | `[]` |  |
 | extraVolumeMounts | list | `[]` |  |
 | extraVolumes | list | `[]` |  |
+| hostAliases | list | `[]` |  |
 | httpGet.port | int | `5000` |  |
 | httpGet.scheme | string | `"HTTP"` |  |
 | httproute | object | `{"annotations":{},"enabled":false,"hostnames":[],"labels":{},"parentRefs":[],"path":"/","pathType":"PathPrefix","rules":[]}` | HTTPRoute configuration for Gateway API (alternative to Ingress). Only enable this if you have Gateway API CRDs installed and a Gateway controller. |
@@ -31,7 +32,7 @@ A zot registry helm chart for Kubernetes
 | httproute.rules | list | `[]` | Advanced routing rules (optional). If not specified, a default rule matching the path will be created. Note: Any backendRefs in custom rules will be ignored and the zot service will always be used. |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/project-zot/zot"` |  |
-| image.tag | string | `"v2.1.16"` |  |
+| image.tag | string | `"v2.1.17"` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `"nginx"` |  |
 | ingress.enabled | bool | `false` |  |
