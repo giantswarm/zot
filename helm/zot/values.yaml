@@ -403,15 +403,13 @@ deploymentAnnotations: {}
 priorityClassName: ""
 dnsConfig: {}
 dnsPolicy: "ClusterFirst"
-<<<<<<< HEAD
 
 global:
   podSecurityStandards:
     enforced: false
 
-=======
 hostAliases: []
->>>>>>> eb7527058ef5b8b3e175934a94e0ba6bae92ff6a
+
 # Metrics configuration
 # NOTE: need enable metric extension in config.json
 metrics:
