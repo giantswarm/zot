@@ -65,7 +65,7 @@ image:
   repository: gsoci.azurecr.io/giantswarm/zot-linux-amd64
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.1.17"
+  tag: "v2.1.18"
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -409,7 +409,38 @@ global:
     enforced: false
 
 hostAliases: []
+<<<<<<< HEAD
 
+=======
+topologySpreadConstraints: []
+# Example: spread pods across zones and nodes
+# topologySpreadConstraints:
+#   - maxSkew: 1
+#     topologyKey: topology.kubernetes.io/zone
+#     whenUnsatisfiable: DoNotSchedule
+#     labelSelector:
+#       matchLabels:
+#         app.kubernetes.io/name: zot
+#         app.kubernetes.io/instance: $CHART_RELEASE
+#   - maxSkew: 1
+#     topologyKey: kubernetes.io/hostname
+#     whenUnsatisfiable: DoNotSchedule
+#     labelSelector:
+#       matchLabels:
+#         app.kubernetes.io/name: zot
+#         app.kubernetes.io/instance: $CHART_RELEASE
+# -- Node selector for pod assignment. Rendered through `tpl`, so values may
+# contain Helm template expressions (e.g. `{{ .Values.global.pool }}`); a value
+# with no `{{ }}` markers is emitted unchanged. Do not template untrusted input.
+# To output a literal brace, escape it, e.g. `{{ "{{" }}`.
+nodeSelector: {}
+# -- Affinity rules for pod assignment. Also rendered through `tpl` (same
+# escaping / untrusted-input note as nodeSelector above).
+affinity: {}
+# -- Tolerations for pod assignment. Also rendered through `tpl` (same
+# escaping / untrusted-input note as nodeSelector above).
+tolerations: []
+>>>>>>> 106878b8ccab46f0bbb44fcc2ac8b57012b98f23
 # Metrics configuration
 # NOTE: need enable metric extension in config.json
 metrics:
