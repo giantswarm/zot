@@ -267,23 +267,10 @@
           "default": "IfNotPresent",
           "title": "pullPolicy",
           "type": "string"
-        },
-        "repository": {
-          "default": "gsoci.azurecr.io/giantswarm/zot-linux-amd64",
-          "title": "repository",
-          "type": "string"
-        },
-        "tag": {
-          "default": "v2.1.18",
-          "description": "Overrides the image tag whose default is the chart appVersion.",
-          "title": "tag",
-          "type": "string"
         }
       },
       "required": [
-        "repository",
-        "pullPolicy",
-        "tag"
+        "pullPolicy"
       ],
       "title": "image",
       "type": "object"
