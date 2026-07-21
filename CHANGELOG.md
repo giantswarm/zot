@@ -11,7 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- Update to upstream Helm Chart `v0.1.122` and Zot `v2.1.19`.
+- Update to upstream Helm Chart `v0.1.122` and Zot `v2.1.18`.
 
 ## [2.8.0] - 2026-06-16
 
