@@ -31,6 +31,7 @@ A zot registry helm chart for Kubernetes
 | httproute.path | string | `"/"` | Path to match when custom rules are not specified. |
 | httproute.pathType | string | `"PathPrefix"` | Path matching type (PathPrefix, Exact, or RegularExpression). |
 | httproute.rules | list | `[]` | Advanced routing rules (optional). If not specified, a default rule matching the path will be created. Note: Any backendRefs in custom rules will be ignored and the zot service will always be used. |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `"nginx"` |  |
 | ingress.enabled | bool | `false` |  |
