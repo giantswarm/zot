@@ -147,16 +147,16 @@ function run_and_log_on_error() {
 	local stdout_file stderr_file
 	stdout_file=$(mktemp)
 	stderr_file=$(mktemp)
-	
+
 	"$@" >"$stdout_file" 2>"$stderr_file"
 	local ec=$?
-	
+
 	if [[ $ec -ne 0 ]]; then
 		echo "Error running command: $*" >&2
 		cat "$stdout_file"
 		cat "$stderr_file" >&2
 	fi
-	
+
 	rm -f "$stdout_file" "$stderr_file"
 	return $ec
 }
