@@ -63,6 +63,11 @@ securityContext:
 replicaCount: 1
 image:
   pullPolicy: IfNotPresent
+<<<<<<< HEAD
+=======
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v2.1.21"
+>>>>>>> 2c707fedf3b7b35199aaf1253350ede25d0b7830
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -384,6 +389,11 @@ extraContainers: []
 # - name: data
 #   image: busybox
 #   command: ["sleep", "infinity"]
+
+# -- List of arbitrary Kubernetes objects deployed as part of the Helm release.
+# Rendered through Helm `tpl` with the root context, so objects may use
+# `.Release.Name`, `.Release.Namespace`, `.Values.*`, and chart helpers.
+extraObjects: []
 
 # Deployment strategy type
 strategy:
