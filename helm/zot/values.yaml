@@ -63,11 +63,6 @@ securityContext:
 replicaCount: 1
 image:
   pullPolicy: IfNotPresent
-<<<<<<< HEAD
-=======
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2.1.21"
->>>>>>> 2c707fedf3b7b35199aaf1253350ede25d0b7830
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
