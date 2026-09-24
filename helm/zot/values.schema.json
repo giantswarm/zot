@@ -69,6 +69,14 @@
       "title": "extraContainers",
       "type": "array"
     },
+    "extraObjects": {
+      "description": "List of arbitrary Kubernetes objects deployed as part of the Helm release.\nRendered through Helm `tpl` with the root context, so objects may use\n`.Release.Name`, `.Release.Namespace`, `.Values.*`, and chart helpers.",
+      "items": {
+        "required": []
+      },
+      "title": "extraObjects",
+      "type": "array"
+    },
     "extraVolumeMounts": {
       "description": "Extra Volume Mounts",
       "items": {
@@ -1344,6 +1352,7 @@
     "extraVolumes",
     "initContainers",
     "extraContainers",
+    "extraObjects",
     "strategy",
     "extraArgs",
     "podAnnotations",

@@ -1,6 +1,6 @@
 # zot
 
-![Version: 0.1.122](https://img.shields.io/badge/Version-0.1.122-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.20](https://img.shields.io/badge/AppVersion-v2.1.20-informational?style=flat-square)
+![Version: 0.1.124](https://img.shields.io/badge/Version-0.1.124-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.21](https://img.shields.io/badge/AppVersion-v2.1.21-informational?style=flat-square)
 
 A zot registry helm chart for Kubernetes
 
