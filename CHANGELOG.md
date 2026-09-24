@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [2.10.0] - 2026-09-24
 
+### Changed
+
+- Update to Zot `v2.1.20`.
+
 ## [2.9.1] - 2026-09-03
 
 ### Changed
