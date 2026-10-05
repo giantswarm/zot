@@ -7,6 +7,12 @@
       "title": "affinity",
       "type": "object"
     },
+    "config": {
+      "description": "Specify config.json as yaml object\nThis will be injected into a Secret resource, so that you can store certain\nconfig options securely.\nMake sure `config.json` is explicitly unset in `configFiles` so that it does\nnot conflict.",
+      "required": [],
+      "title": "config",
+      "type": "object"
+    },
     "configFiles": {
       "description": "If mountConfig is true the chart creates the '$CHART_RELEASE-config', if it\ndoes not exist the user is in charge of managing it (as this file includes a\nsample file you have to add it empty to handle it externally).",
       "properties": {
@@ -767,7 +773,7 @@
     },
     "replicaCount": {
       "default": 1,
-      "description": "Default values for zot.\nThis is a YAML-formatted file.\nDeclare variables to be passed into your templates.",
+      "description": "Example config:\nconfig:\n  storage:\n    rootDirectory: \"/var/lib/registry\"\n  http:\n    address: 0.0.0.0\n    port: '5000'\n    readTimeout: 60s\n    writeTimeout: 60s\n  log:\n    level: debug",
       "title": "replicaCount",
       "type": "integer"
     },
@@ -1329,6 +1335,7 @@
     "testPodResources",
     "podSecurityContext",
     "securityContext",
+    "config",
     "replicaCount",
     "image",
     "namespace",
