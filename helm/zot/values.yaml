@@ -60,9 +60,32 @@ securityContext:
 # Default values for zot.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+
+# Specify config.json as yaml object
+# This will be injected into a Secret resource, so that you can store certain
+# config options securely.
+# Make sure `config.json` is explicitly unset in `configFiles` so that it does
+# not conflict.
+config: {}
+# Example config:
+# config:
+#   storage:
+#     rootDirectory: "/var/lib/registry"
+#   http:
+#     address: 0.0.0.0
+#     port: '5000'
+#     readTimeout: 60s
+#     writeTimeout: 60s
+#   log:
+#     level: debug
 replicaCount: 1
 image:
   pullPolicy: IfNotPresent
+<<<<<<< HEAD
+=======
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v2.1.22"
+>>>>>>> 6b2f4f2a90aeaac4cce2249834191620dec00b43
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -389,7 +412,6 @@ extraContainers: []
 # Rendered through Helm `tpl` with the root context, so objects may use
 # `.Release.Name`, `.Release.Namespace`, `.Values.*`, and chart helpers.
 extraObjects: []
-
 # Deployment strategy type
 strategy:
   # strategy.type should be set to Recreate if local storage is used
