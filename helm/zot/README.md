@@ -1,6 +1,6 @@
 # zot
 
-![Version: 0.1.124](https://img.shields.io/badge/Version-0.1.124-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.21](https://img.shields.io/badge/AppVersion-v2.1.21-informational?style=flat-square)
+![Version: 0.1.126](https://img.shields.io/badge/Version-0.1.126-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v2.1.21](https://img.shields.io/badge/AppVersion-v2.1.21-informational?style=flat-square)
 
 A zot registry helm chart for Kubernetes
 
@@ -9,6 +9,7 @@ A zot registry helm chart for Kubernetes
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity rules for pod assignment. Also rendered through `tpl` (same escaping / untrusted-input note as nodeSelector above). |
+| config | object | `{}` |  |
 | configFiles."config.json" | string | `"{\n  \"storage\": { \"rootDirectory\": \"/var/lib/registry\" },\n  \"http\": {\n    \"address\": \"0.0.0.0\",\n    \"port\": \"5000\",\n    \"readTimeout\": \"60s\",\n    \"writeTimeout\": \"60s\"\n  },\n  \"log\": { \"level\": \"debug\" }\n}"` |  |
 | deploymentAnnotations | object | `{}` |  |
 | dnsConfig | object | `{}` |  |
@@ -17,6 +18,7 @@ A zot registry helm chart for Kubernetes
 | externalSecrets | list | `[]` |  |
 | extraArgs | list | `[]` |  |
 | extraContainers | list | `[]` |  |
+| extraObjects | list | `[]` | List of arbitrary Kubernetes objects deployed as part of the Helm release. Rendered through Helm `tpl` with the root context, so objects may use `.Release.Name`, `.Release.Namespace`, `.Values.*`, and chart helpers. |
 | extraVolumeMounts | list | `[]` |  |
 | extraVolumes | list | `[]` |  |
 | hostAliases | list | `[]` |  |
