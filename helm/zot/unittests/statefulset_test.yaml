@@ -1,10 +1,13 @@
 suite: statefulset tests
 templates:
   - statefulset.yaml
+  - configmap.yaml
+  - secret.yaml
 release:
   name: my-release
 tests:
   - it: should not create statefulset when persistence is disabled
+    template: statefulset.yaml
     set:
       persistence: false
     asserts:
@@ -12,6 +15,7 @@ tests:
           count: 0
 
   - it: should create statefulset when persistence is enabled
+    template: statefulset.yaml
     set:
       persistence: true
       pvc:
@@ -23,6 +27,7 @@ tests:
           of: StatefulSet
 
   - it: should handle PVC accessModes as a list
+    template: statefulset.yaml
     set:
       persistence: true
       pvc:
@@ -39,6 +44,7 @@ tests:
           value: ReadOnlyMany
 
   - it: should handle legacy PVC accessMode as a single item
+    template: statefulset.yaml
     set:
       persistence: true
       pvc:
@@ -54,6 +60,7 @@ tests:
           count: 1
 
   - it: should use default accessMode when neither is specified
+    template: statefulset.yaml
     set:
       persistence: true
       pvc:
@@ -67,6 +74,7 @@ tests:
           count: 1
 
   - it: should set storageClassName when specified
+    template: statefulset.yaml
     set:
       persistence: true
       pvc:
@@ -78,6 +86,7 @@ tests:
           value: "fast-storage"
 
   - it: should not set storageClassName when not specified
+    template: statefulset.yaml
     set:
       persistence: true
       pvc:
@@ -87,6 +96,7 @@ tests:
           path: spec.volumeClaimTemplates[0].spec.storageClassName
 
   - it: uses <release>-pvc as the VCT name and volumeMount name by default
+    template: statefulset.yaml
     set:
       persistence: true
       pvc.create: true
@@ -101,6 +111,7 @@ tests:
             name: my-release-pvc
 
   - it: uses pvc.name verbatim as the VCT name and volumeMount name
+    template: statefulset.yaml
     set:
       persistence: true
       pvc.create: true
@@ -116,6 +127,7 @@ tests:
             name: custom-pvc
 
   - it: has no volumeClaimTemplates and mounts a pre-existing PVC when create is false
+    template: statefulset.yaml
     set:
       persistence: true
       pvc.create: false
@@ -136,6 +148,7 @@ tests:
             name: my-existing-pvc
 
   - it: defaults PVC name to <release>-pvc when create is false and name is null
+    template: statefulset.yaml
     set:
       persistence: true
       pvc.create: false
@@ -155,6 +168,7 @@ tests:
             name: my-release-pvc
 
   - it: should have an headless service when enabled
+    template: statefulset.yaml
     set:
       persistence: true
       serviceHeadless:
@@ -165,6 +179,7 @@ tests:
           pattern: .*-headless$
 
   - it: should not have initContainers when not set
+    template: statefulset.yaml
     set:
       persistence: true
     asserts:
@@ -172,6 +187,7 @@ tests:
           path: spec.template.spec.initContainers
 
   - it: should render initContainers when set
+    template: statefulset.yaml
     set:
       persistence: true
       initContainers:
@@ -187,6 +203,7 @@ tests:
           value: busybox
 
   - it: should not have hostAliases when not set
+    template: statefulset.yaml
     set:
       persistence: true
     asserts:
@@ -194,6 +211,7 @@ tests:
           path: spec.template.spec.hostAliases
 
   - it: should render hostAliases when set
+    template: statefulset.yaml
     set:
       persistence: true
       hostAliases:
@@ -209,6 +227,7 @@ tests:
           value: foo.local
 
   - it: should not have topologySpreadConstraints when not set
+    template: statefulset.yaml
     set:
       persistence: true
     asserts:
@@ -216,6 +235,7 @@ tests:
           path: spec.template.spec.topologySpreadConstraints
 
   - it: should render topologySpreadConstraints when set
+    template: statefulset.yaml
     set:
       persistence: true
       topologySpreadConstraints:
@@ -246,6 +266,7 @@ tests:
           value: kubernetes.io/hostname
 
   - it: should render a static nodeSelector unchanged
+    template: statefulset.yaml
     set:
       persistence: true
       nodeSelector:
@@ -256,6 +277,7 @@ tests:
           value: ssd
 
   - it: should render static tolerations unchanged
+    template: statefulset.yaml
     set:
       persistence: true
       tolerations:
@@ -272,6 +294,7 @@ tests:
           value: zot
 
   - it: should render static affinity unchanged
+    template: statefulset.yaml
     set:
       persistence: true
       affinity:
@@ -289,6 +312,7 @@ tests:
           value: ssd
 
   - it: should evaluate templates in nodeSelector
+    template: statefulset.yaml
     set:
       persistence: true
       global:
@@ -301,6 +325,7 @@ tests:
           value: gpu-pool
 
   - it: should evaluate templates in tolerations
+    template: statefulset.yaml
     set:
       persistence: true
       global:
@@ -316,6 +341,7 @@ tests:
           value: gpu-pool
 
   - it: should evaluate templates in affinity
+    template: statefulset.yaml
     set:
       persistence: true
       global:

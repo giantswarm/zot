@@ -609,20 +609,28 @@
         "maxUnavailable": {
           "default": "null",
           "description": "Maximum number/percentage of pods that can be unavailable during a\ndisruption. Mutually exclusive with `minAvailable`.",
+          "required": [],
           "title": "maxUnavailable",
-          "type": "null"
+          "type": [
+            "integer",
+            "string",
+            "null"
+          ]
         },
         "minAvailable": {
           "default": "null",
           "description": "Minimum number/percentage of pods that must remain available during a\ndisruption. Mutually exclusive with `maxUnavailable`.",
+          "required": [],
           "title": "minAvailable",
-          "type": "null"
+          "type": [
+            "integer",
+            "string",
+            "null"
+          ]
         }
       },
       "required": [
-        "enabled",
-        "minAvailable",
-        "maxUnavailable"
+        "enabled"
       ],
       "title": "podDisruptionBudget",
       "type": "object"

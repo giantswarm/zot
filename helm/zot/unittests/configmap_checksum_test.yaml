@@ -6,12 +6,18 @@ suite: configmap checksum in deployment
 tests:
   - it: has no checksum/config if no config
     template: deployment.yaml
+    set:
+      persistence: false
+      # the chart ships a default config.json, so turn the mount off instead
+      mountConfig: false
     asserts:
       - isNull:
           path: spec.template.metadata.annotations.checksum/config
   - it: generate checksum/config if config is present
     template: deployment.yaml
     set:
+      # deployment.yaml renders only when persistence is off; the default is on.
+      persistence: false
       mountConfig: true
       configFiles:
         config.json: "{}"
