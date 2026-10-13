@@ -9,12 +9,12 @@ tests:
       - hasDocuments:
           count: 0
 
-  - it: should not fail if podDisruptionBudget is absent
-    set:
-      podDisruptionBudget: null
-    asserts:
-      - hasDocuments:
-          count: 0
+  # Removed: "should not fail if podDisruptionBudget is absent". The generated
+  # values.schema.json lists every root key under `required` (the pre-commit hook passes
+  # --skip-auto-generation=additionalProperties, not required), so `podDisruptionBudget: null`
+  # is rejected by helm before a template runs. The state is unreachable, and the first test
+  # above already covers the disabled case. To restore the test, add `required` to
+  # --skip-auto-generation in .pre-commit-config.yaml and regenerate the schema.
 
   - it: should fail if enabled but neither minAvailable nor maxUnavailable is set
     set:

@@ -9,6 +9,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
+- `podDisruptionBudget.minAvailable` and `podDisruptionBudget.maxUnavailable` are usable again. The generated
+  `values.schema.json` typed both as `null` only, because `values.yaml` defaults them to `null`, so
+  `helm install --set podDisruptionBudget.minAvailable=1` failed schema validation and no PodDisruptionBudget
+  could ever be created. Both now accept an integer, a percentage string or null.
+
+- The chart unit tests run and pass. They did not: all 65 errored, first on the schema defect above and then
+  because the deployment and statefulset suites restrict rendering to one template while both templates
+  `include` `configmap.yaml` and `secret.yaml` for their checksum annotations.
+
 - The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
 
 ## [2.10.0] - 2026-09-24
