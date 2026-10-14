@@ -2,7 +2,7 @@
 #
 #    devctl
 #
-#    https://github.com/giantswarm/devctl/blob/9eb05430fd1f890dc7484dcef609c4594e9a12b7/pkg/gen/input/makefile/internal/file/Makefile.gen.app.mk.template
+#    https://github.com/giantswarm/devctl/blob/04334ff66e688e6562a10436ad17ea55631ac849/pkg/gen/input/makefile/internal/file/Makefile.gen.app.mk.template
 #
 
 ##@ App
@@ -72,8 +72,10 @@ HELM_UNITTEST_VERSION ?= v1.2.1
 # Both directory names are in use across the org: upstream charts vendored from Artifact
 # Hub tend to use `unittests/`, our own charts use `tests/`. The `Chart.yaml` check rejects
 # a nested directory that only shares the name, such as `tests/admission-webhooks/`.
-# Nothing here reads APPLICATION: it may be set by a later included makefile.
-helm-test: check-env install-helm-unittest ## Run the chart unit tests (helm-unittest).
+# Nothing here reads APPLICATION, so this target carries no `check-env` prerequisite. A
+# chart-only repository sets APPLICATION nowhere, and requiring it made `make helm-test`
+# fail in exactly the repositories this target exists for.
+helm-test: install-helm-unittest ## Run the chart unit tests (helm-unittest).
 	@echo "====> $@"
 	@found=""; \
 	for d in $$(find helm -type d \( -name tests -o -name unittests \) 2>/dev/null | sort); do \
