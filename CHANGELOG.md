@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Update architect to v10.14.9 (giantswarm/zot#290)
+
 ### Fixed
 
 - `podDisruptionBudget.minAvailable` and `podDisruptionBudget.maxUnavailable` are usable again. The generated
