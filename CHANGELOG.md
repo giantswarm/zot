@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [2.12.0] - 2026-10-20
+
 ### Changed
 
 - Update to Zot `v2.1.22` (upstream chart `0.1.127`). On-demand sync now copies only the platform a client
@@ -269,7 +271,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - initial release compatible with vintage and CAPI
 
-[Unreleased]: https://github.com/giantswarm/zot/compare/v2.11.0...HEAD
+[Unreleased]: https://github.com/giantswarm/zot/compare/v2.12.0...HEAD
+[2.12.0]: https://github.com/giantswarm/zot/compare/v2.11.0...v2.12.0
 [2.11.0]: https://github.com/giantswarm/zot/compare/v2.10.0...v2.11.0
 [2.10.0]: https://github.com/giantswarm/zot/compare/v2.9.1...v2.10.0
 [2.9.1]: https://github.com/giantswarm/zot/compare/v2.9.0...v2.9.1
