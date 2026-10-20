@@ -114,5 +114,9 @@ spec:
   connection:
     {{- toYaml . | nindent 4 }}
   {{- end }}
+  {{- with $policy.timeout }}
+  timeout:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 {{- end }}
 {{- end }}

@@ -7,6 +7,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- `route.backendTrafficPolicy.timeout` sets the Envoy Gateway timeouts of the Zot route. Without it Envoy's
+  default 15s route request timeout applies to the whole response, so large blob pulls on management clusters
+  with a slow uplink fail with a 504. `http.requestTimeout: 0s` disables it.
+
+### Changed
+
+- `route.backendTrafficPolicy.connection` is part of `values.schema.json`, like the new `timeout`. Neither was
+  validated before, so a misspelled field such as `bufferLimt` rendered into the policy and was silently
+  dropped. Both now accept only the fields of Envoy Gateway v1.9: values with any other `connection` or
+  `timeout` key, which rendered before, now fail schema validation.
+
 ### Fixed
 
 - `podDisruptionBudget.minAvailable` and `podDisruptionBudget.maxUnavailable` are usable again. The generated

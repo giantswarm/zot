@@ -1,0 +1,95 @@
+suite: test route
+templates:
+  - route.yaml
+tests:
+  - it: should render neither connection nor timeout by default
+    set:
+      route.enabled: true
+      route.backendTrafficPolicy.enabled: true
+    documentSelector:
+      path: kind
+      value: BackendTrafficPolicy
+    asserts:
+      - notExists:
+          path: spec.connection
+      - notExists:
+          path: spec.timeout
+  - it: should render the connection alone
+    set:
+      route.enabled: true
+      route.backendTrafficPolicy.enabled: true
+      route.backendTrafficPolicy.connection.bufferLimit: 1Gi
+    documentSelector:
+      path: kind
+      value: BackendTrafficPolicy
+    asserts:
+      - equal:
+          path: spec.connection.bufferLimit
+          value: 1Gi
+      - notExists:
+          path: spec.timeout
+  - it: should render the timeout alone
+    set:
+      route.enabled: true
+      route.backendTrafficPolicy.enabled: true
+      route.backendTrafficPolicy.timeout.http.requestTimeout: 0s
+    documentSelector:
+      path: kind
+      value: BackendTrafficPolicy
+    asserts:
+      - equal:
+          path: spec.timeout
+          value:
+            http:
+              requestTimeout: 0s
+      - notExists:
+          path: spec.connection
+      - equal:
+          path: spec.targetRefs[0].name
+          value: RELEASE-NAME-zot
+  - it: should render connection and timeout together
+    set:
+      route.enabled: true
+      route.backendTrafficPolicy.enabled: true
+      route.backendTrafficPolicy.connection.bufferLimit: 1Gi
+      route.backendTrafficPolicy.timeout.http.requestTimeout: 0s
+      route.backendTrafficPolicy.timeout.http.streamIdleTimeout: 5m
+    documentSelector:
+      path: kind
+      value: BackendTrafficPolicy
+    asserts:
+      - equal:
+          path: spec.connection.bufferLimit
+          value: 1Gi
+      - equal:
+          path: spec.timeout.http
+          value:
+            requestTimeout: 0s
+            streamIdleTimeout: 5m
+  - it: should leave the HTTPRoute untouched by the timeout
+    set:
+      route.enabled: true
+      route.backendTrafficPolicy.enabled: true
+      route.backendTrafficPolicy.timeout.http.requestTimeout: 0s
+    documentSelector:
+      path: kind
+      value: HTTPRoute
+    asserts:
+      - notExists:
+          path: spec.rules[0].timeouts
+  - it: should reject a misspelled timeout field
+    set:
+      route.enabled: true
+      route.backendTrafficPolicy.enabled: true
+      route.backendTrafficPolicy.timeout.http.requestTimout: 0s
+    asserts:
+      - failedTemplate:
+          errorPattern: "requestTimout.*not allowed"
+  - it: should reject a misspelled connection field
+    set:
+      route.enabled: true
+      route.backendTrafficPolicy.enabled: true
+      route.backendTrafficPolicy.connection.bufferLimt: 1Gi
+    asserts:
+      - failedTemplate:
+          errorPattern: "bufferLimt.*not allowed"

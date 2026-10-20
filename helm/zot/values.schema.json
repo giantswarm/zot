@@ -855,6 +855,42 @@
               "title": "annotations",
               "type": "object"
             },
+            "connection": {
+              "additionalProperties": false,
+              "description": "Connection configuration, rendered as `spec.connection`, e.g. `bufferLimit: 1Gi`",
+              "properties": {
+                "bufferLimit": {
+                  "required": [],
+                  "type": [
+                    "string",
+                    "integer"
+                  ]
+                },
+                "preconnect": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "perEndpointPercent": {
+                      "type": "integer"
+                    },
+                    "predictivePercent": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [],
+                  "type": "object"
+                },
+                "socketBufferLimit": {
+                  "required": [],
+                  "type": [
+                    "string",
+                    "integer"
+                  ]
+                }
+              },
+              "required": [],
+              "title": "connection",
+              "type": "object"
+            },
             "enabled": {
               "default": false,
               "title": "enabled",
@@ -864,6 +900,47 @@
               "description": "Labels to add to the BackendTrafficPolicy",
               "required": [],
               "title": "labels",
+              "type": "object"
+            },
+            "timeout": {
+              "additionalProperties": false,
+              "description": "Timeout configuration, rendered as `spec.timeout`. Without `http.requestTimeout` Envoy's\ndefault 15s route request timeout applies, which covers the whole response, so a large blob\non a slow link fails with a 504. `\"0s\"` disables it, `http.streamIdleTimeout` then still\nends streams that stop sending data.",
+              "properties": {
+                "http": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "connectionIdleTimeout": {
+                      "type": "string"
+                    },
+                    "maxConnectionDuration": {
+                      "type": "string"
+                    },
+                    "maxStreamDuration": {
+                      "type": "string"
+                    },
+                    "requestTimeout": {
+                      "type": "string"
+                    },
+                    "streamIdleTimeout": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [],
+                  "type": "object"
+                },
+                "tcp": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "connectTimeout": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [],
+                  "type": "object"
+                }
+              },
+              "required": [],
+              "title": "timeout",
               "type": "object"
             }
           },

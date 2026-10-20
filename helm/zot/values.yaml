@@ -159,9 +159,55 @@ route:
     annotations: {}
     # -- Labels to add to the BackendTrafficPolicy
     labels: {}
-    # -- Connection configuration
-    # connection:
-    #   bufferLimit: 1Gi
+    # -- Connection configuration, rendered as `spec.connection`, e.g. `bufferLimit: 1Gi`
+    # @schema
+    # type: object
+    # additionalProperties: false
+    # properties:
+    #   bufferLimit:
+    #     type: [string, integer]
+    #   socketBufferLimit:
+    #     type: [string, integer]
+    #   preconnect:
+    #     type: object
+    #     additionalProperties: false
+    #     properties:
+    #       perEndpointPercent:
+    #         type: integer
+    #       predictivePercent:
+    #         type: integer
+    # @schema
+    connection: {}
+    # -- Timeout configuration, rendered as `spec.timeout`. Without `http.requestTimeout` Envoy's
+    # default 15s route request timeout applies, which covers the whole response, so a large blob
+    # on a slow link fails with a 504. `"0s"` disables it, `http.streamIdleTimeout` then still
+    # ends streams that stop sending data.
+    # @schema
+    # type: object
+    # additionalProperties: false
+    # properties:
+    #   http:
+    #     type: object
+    #     additionalProperties: false
+    #     properties:
+    #       connectionIdleTimeout:
+    #         type: string
+    #       maxConnectionDuration:
+    #         type: string
+    #       maxStreamDuration:
+    #         type: string
+    #       requestTimeout:
+    #         type: string
+    #       streamIdleTimeout:
+    #         type: string
+    #   tcp:
+    #     type: object
+    #     additionalProperties: false
+    #     properties:
+    #       connectTimeout:
+    #         type: string
+    # @schema
+    timeout: {}
   # -- Envoy Gateway SecurityPolicy configuration
   securityPolicy:
     enabled: false
