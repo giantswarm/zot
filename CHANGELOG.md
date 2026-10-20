@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Update to Zot `v2.1.22` (upstream chart `0.1.127`). On-demand sync now copies only the platform a client
+  requests instead of every platform of a multi-arch image, and `extensions.sync.registries[].onDemandInBackground`
+  can return a miss immediately while the image syncs in the background. `preserveDigest` is deprecated and ignored,
+  Docker media types need `http.compat: ["docker2s2"]`.
+- `config` sets `config.json` as a YAML object, rendered into a Secret. The config volume is a projected volume
+  and the pod checksum annotations are renamed to `checksum/configFiles` and `checksum/secretFiles`, so pods roll
+  once on upgrade.
+
 ## [2.11.0] - 2026-10-20
 
 ### Added
