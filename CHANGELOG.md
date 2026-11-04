@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- CI: architect orb 10.16.7, which pushes the chart to the git app catalogs with the architect GitHub App instead of the `catalogbot` account (giantswarm/giantswarm#34786).
 - `route.backendTrafficPolicy.connection` is part of `values.schema.json`, like the new `timeout`. Neither was
   validated before, so a misspelled field such as `bufferLimt` rendered into the policy and was silently
   dropped. Both now accept only the fields of Envoy Gateway v1.9: values with any other `connection` or
