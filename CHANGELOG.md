@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- CI: architect orb 10.16.7, which pushes the chart to the git app catalogs with the architect GitHub App instead of the `catalogbot` account (giantswarm/giantswarm#34786).
 - Update to Zot `v2.1.22` (upstream chart `0.1.127`). On-demand sync now copies only the platform a client
   requests instead of every platform of a multi-arch image, and `extensions.sync.registries[].onDemandInBackground`
   can return a miss immediately while the image syncs in the background. `preserveDigest` is deprecated and ignored,
