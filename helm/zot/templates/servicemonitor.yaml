@@ -52,6 +52,7 @@ spec:
           name: {{ include "zot.fullname" $ }}-sm-auth
           key: username
       {{- end }}
+<<<<<<< HEAD
 {{- if .Values.metrics.serviceMonitor.basicAuth }}
 ---
 apiVersion: v1
@@ -64,6 +65,11 @@ data:
   username: {{ print .Values.metrics.serviceMonitor.basicAuth.username | b64enc }}
   password: {{ print .Values.metrics.serviceMonitor.basicAuth.password | b64enc }}
 {{- end }}
+=======
+  namespaceSelector:
+    matchNames:
+      - {{ .Values.namespace | default .Release.Namespace }}
+>>>>>>> d6d34e4b531735b29b35cccb6511c59353bd1211
 {{- end }}
 {{- end }}
 {{- end }}
