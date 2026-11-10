@@ -81,6 +81,11 @@ config: {}
 replicaCount: 1
 image:
   pullPolicy: IfNotPresent
+<<<<<<< HEAD
+=======
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v2.1.23"
+>>>>>>> 6a65da6d4fc1586710664bd9ab37607a4eea7774
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -383,8 +388,10 @@ secretFiles:
   htpasswd: |-
     admin:$2y$05$vmiurPmJvHylk78HHFWuruFFVePlit9rZWGA/FbZfTEmNRneGJtha
     user:$2y$05$L86zqQDfH5y445dcMlwu6uHv.oXFgT6AiJCwpv3ehr7idc0rI3S2G
-# Authentication string for Kubernetes probes, which is needed when `htpasswd`
-# authentication is enabled, but the anonymous access policy is not.
+# Authentication string for the `helm test` hooks, which query `/v2/_catalog`
+# and need it when `htpasswd` authentication is enabled, but the anonymous
+# access policy is not. The liveness, readiness and startup probes use the
+# unauthenticated `/livez`, `/readyz` and `/startupz` endpoints and do not send it.
 # It contains a `user:password` string encoded in base64. The example value is
 # from running `echo -n "foo:var" | base64`
 # authHeader: "Zm9vOmJhcg=="
