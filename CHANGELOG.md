@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Add the `io.giantswarm.application.managed` annotation to `Chart.yaml`, as the chart metadata standard requires.
+
 ## [2.12.0] - 2026-10-20
 
 ### Changed
