@@ -68,8 +68,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "zot.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.priorityClassName }}
       priorityClassName: {{ . }}
       {{- end }}
@@ -79,9 +81,16 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
           securityContext:
+<<<<<<< HEAD
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.giantswarm.images.registry }}/{{ .Values.giantswarm.images.zot.image }}:{{ .Values.giantswarm.images.zot.tag | default .Chart.AppVersion }}"
+=======
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+>>>>>>> 6c8489eb600257fa610e7544c125a4f5effcbdd6
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.extraArgs }}
           args:
@@ -117,22 +126,12 @@ spec:
               path: /livez
               port: {{ .Values.httpGet.port }}
               scheme: {{ .Values.httpGet.scheme }}
-              {{- if .Values.authHeader }}
-              httpHeaders:
-                - name: Authorization
-                  value: Basic {{ .Values.authHeader }}
-              {{- end }}
           readinessProbe:
             initialDelaySeconds: 5
             httpGet:
               path: /readyz
               port: {{ .Values.httpGet.port }}
               scheme: {{ .Values.httpGet.scheme }}
-              {{- if .Values.authHeader }}
-              httpHeaders:
-                - name: Authorization
-                  value: Basic {{ .Values.authHeader }}
-              {{- end }}
           startupProbe:
             initialDelaySeconds: {{ .Values.startupProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.startupProbe.periodSeconds }}
@@ -141,13 +140,10 @@ spec:
               path: /startupz
               port: {{ .Values.httpGet.port }}
               scheme: {{ .Values.httpGet.scheme }}
-              {{- if .Values.authHeader }}
-              httpHeaders:
-                - name: Authorization
-                  value: Basic {{ .Values.authHeader }}
-              {{- end }}
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- with .Values.extraContainers }}
         {{- toYaml . | nindent 8 }}
       {{- end }}

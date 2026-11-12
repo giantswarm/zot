@@ -79,8 +79,19 @@ config: {}
 #   log:
 #     level: debug
 replicaCount: 1
+# -- Override the chart name used in resource names and the app.kubernetes.io/name label.
+nameOverride: ""
+# -- Override the full resource name (defaults to `<release>-zot`).
+fullnameOverride: ""
 image:
   pullPolicy: IfNotPresent
+<<<<<<< HEAD
+=======
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v2.1.23"
+# -- Image pull secrets for the zot pods, e.g. `[{name: regcred}]`.
+imagePullSecrets: []
+>>>>>>> 6c8489eb600257fa610e7544c125a4f5effcbdd6
 # Defaults to the release namespace if not specified
 namespace: ""
 serviceAccount:
@@ -383,8 +394,10 @@ secretFiles:
   htpasswd: |-
     admin:$2y$05$vmiurPmJvHylk78HHFWuruFFVePlit9rZWGA/FbZfTEmNRneGJtha
     user:$2y$05$L86zqQDfH5y445dcMlwu6uHv.oXFgT6AiJCwpv3ehr7idc0rI3S2G
-# Authentication string for Kubernetes probes, which is needed when `htpasswd`
-# authentication is enabled, but the anonymous access policy is not.
+# Authentication string for the `helm test` hooks, which query `/v2/_catalog`
+# and need it when `htpasswd` authentication is enabled, but the anonymous
+# access policy is not. The liveness, readiness and startup probes use the
+# unauthenticated `/livez`, `/readyz` and `/startupz` endpoints and do not send it.
 # It contains a `user:password` string encoded in base64. The example value is
 # from running `echo -n "foo:var" | base64`
 # authHeader: "Zm9vOmJhcg=="
@@ -468,6 +481,20 @@ strategy:
 extraArgs: []
 podAnnotations: {}
 podLabels: {}
+# -- Pod-level security context.
+podSecurityContext: {}
+# fsGroup: 1000
+# -- Security context for the zot container.
+securityContext: {}
+# runAsNonRoot: true
+# readOnlyRootFilesystem: true
+# -- CPU/memory resource requests and limits for the zot container.
+resources: {}
+# requests:
+#   cpu: 100m
+#   memory: 256Mi
+# -- When true, add a random pod annotation so every upgrade rolls the pods.
+forceRoll: false
 deploymentAnnotations: {}
 priorityClassName: ""
 dnsConfig: {}
@@ -542,6 +569,7 @@ metrics:
     scheme: ""
     # Specify the interval at which metrics should be scraped
     interval: "30s"
+<<<<<<< HEAD
     # -- Timeout if metrics can't be retrieved in given time interval
     scrapeTimeout: 25s
     # -- Selects the label from the associated Kubernetes `Service` object which will be used as the `job` label for all metrics.
@@ -569,3 +597,23 @@ metrics:
     basicAuth: {}
     # username: user
     # password: 12345
+=======
+    # Specify the path to scrape metrics from
+    path: "/metrics"
+    # Optional: scrape timeout, e.g. "10s"
+    scrapeTimeout: ""
+    # Optional: "https" when TLS is enabled in the zot config
+    scheme: ""
+    # Optional: service label used as the Prometheus job name
+    jobLabel: ""
+    # basicAuth credentials for serviceMonitor
+    basicAuth:
+      secretName: basic-auth
+      usernameKey: username
+      passwordKey: password
+# Test hooks configuration
+test:
+  image:
+    repository: alpine
+    tag: "3.18"
+>>>>>>> 6c8489eb600257fa610e7544c125a4f5effcbdd6
